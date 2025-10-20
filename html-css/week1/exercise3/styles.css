@@ -38,13 +38,13 @@ header {
   position: sticky;
   top: 0;
   background-color: var(--body-background);
-  padding: 1rem;
+  padding: 0.5rem;
   border-bottom: 3px double var(--border);
   z-index: 100;
 }
 
 .title {
-  font-size: 3rem;
+  font-size: 2rem;
   text-align: center;
   background: var(--color-title);
   background-clip: text;
@@ -57,7 +57,7 @@ header {
   align-items: center;
   text-align: center;
   font-style: italic;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode",
     "Lucida Sans", Tahoma, sans-serif;
 }
@@ -68,14 +68,12 @@ header {
   max-width: 1200px;
   margin: 1rem auto;
   padding: 0 1rem;
+  flex-direction: column;
 }
 
-.main-text {
-  flex-basis: 70%;
-}
-
+.main-text,
 .aside {
-  flex-basis: 30%;
+  flex-basis: 100%;
 }
 
 /* === CONTENT BLOCKS === */
@@ -129,8 +127,8 @@ header {
 }
 
 .icon {
-  width: 2.8rem;
-  height: 2.8rem;
+  width: 2.3rem;
+  height: 2.3rem;
   vertical-align: middle;
   margin: 0 0.5rem;
   border-radius: 50%;
@@ -148,26 +146,29 @@ header {
 }
 
 /* === MEDIA QUERIES === */
-@media (max-width: 768px) {
+@media (min-width: 768px) {
   .container {
-    flex-direction: column;
+    flex-direction: row;
   }
 
-  .main-text,
+  .main-text {
+    flex-basis: 70%;
+  }
+
   .aside {
-    flex-basis: 100%;
+    flex-basis: 30%;
   }
 
   .title {
-    font-size: 2.2rem;
+    font-size: 2.5rem;
   }
 
   .tagline {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
   }
 
   .icon {
-    width: 2.3rem;
-    height: 2.3rem;
+    width: 2.7rem;
+    height: 2.7rem;
   }
 }
