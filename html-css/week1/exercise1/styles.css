@@ -1,0 +1,44 @@
+:root {
+  --background: #f4efef;
+  --title-color: #323e9a;
+  --background-table: #d1def6;
+  --header-table: #6782db;
+  --title-table: #ffffff;
+  --border-color: #282828;
+}
+
+body {
+  margin: 0;
+  background-color: var(--background);
+  font-family: "Montserrat", sans-serif;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: bold;
+  margin: 1.5rem;
+  text-align: center;
+  color: var(--title-color);
+}
+
+.table {
+  width: 85%;
+  margin: 1rem auto;
+  padding: 0.5rem;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.329);
+  background: var(--background-table);
+  border-radius: 1rem;
+  border: 1px solid var(--border-color);
+}
+
+.header {
+  text-shadow: 3px 5px 2px rgba(0, 0, 0, 0.5);
+  color: var(--title-table);
+  font-size: 1.8rem;
+}
+
+.data {
+  font-size: 1.3rem;
+  text-align: center;
+  border-bottom: 3px solid var(--background);
+}
