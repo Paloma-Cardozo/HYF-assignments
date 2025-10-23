@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet" />
+    <title>Basic Contact Form</title>
+  </head>
+
+  <body>
+    <form class="container">
+      <h1 class="header">Contact Us</h1>
+
+      <div class="form-group">
+        <label class="data" for="title">Title:</label>
+        <select name="title" id="title" required>
+          <option value="" disabled selected>Select your title</option>
+          <option value="mr">Mr.</option>
+          <option value="ms">Ms.</option>
+          <option value="mrs">Mrs.</option>
+          <option value="miss">Miss.</option>
+          <option value="dr">Dr.</option>
+          <option value="sir">Sir.</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="data" for="first-name">First Name:</label>
+        <input
+          type="text"
+          id="first-name"
+          name="first-name"
+          placeholder="Write your first name"
+          required />
+      </div>
+
+      <div class="form-group">
+        <label class="data" for="last-name">Last Name:</label>
+        <input
+          type="text"
+          id="last-name"
+          name="last-name"
+          placeholder="Write your last name"
+          required />
+      </div>
+
+      <div class="form-group">
+        <label class="data" for="email">Email:</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Write your email"
+          required />
+      </div>
+
+      <div class="form-group">
+        <label class="data" for="message">Message:</label>
+        <textarea
+          id="message"
+          name="message"
+          rows="4"
+          cols="50"
+          placeholder="Write your message here"
+          required></textarea>
+      </div>
+
+      <button class="button" type="submit">Submit Form</button>
+    </form>
+  </body>
+</html>
