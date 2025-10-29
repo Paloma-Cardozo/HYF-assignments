@@ -1,0 +1,92 @@
+:root {
+  --primary-bg: hsl(212, 45%, 89%);
+  --card-bg: hsl(0, 0%, 100%);
+  --text-color: hsl(218, 44%, 22%);
+  --text-color-light: hsl(216, 15%, 48%);
+  --accent-color: hsl(220, 40%, 25%);
+  --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  --font-family: 'Outfit', sans-serif;
+  --box-hoover: hsl(220, 35%, 45%);
+}
+
+/* General styles */
+body {
+  font-family: var(--font-family);
+  background-color: var(--primary-bg);
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Styles for the box */
+.qr-code {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--card-bg);
+  max-width: 320px;
+  width: min(95%, 320px);
+  border-radius: 15px;
+  padding: 1rem 0.75rem;
+  box-shadow: 0 5px 15px var(--shadow);
+}
+
+/* Styles for the QR code */
+.qr-code img {
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+  transition: transform 0.3s ease;
+}
+
+.qr-code:hover img {
+  transform: scale(1.03);
+}
+
+/* Styles for the title */
+.text h1 {
+  font-size: 1.75rem;
+  color: var(--text-color);
+  text-align: center;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+/* Styles for the paragraph */
+.text p {
+  font-size: 0.95rem;
+  color: var(--text-color-light);
+  text-align: center;
+  font-weight: 400;
+  line-height: 1.4;  
+  padding: 0 1.5rem;
+}
+
+/* Styles for the footer */
+footer {
+  font-size: 1rem;
+  text-align: center;
+  padding: 1rem 0;
+}
+
+footer a {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+footer a:hover {
+  color: var(--box-hoover);
+  text-decoration: underline;
+} 
+
+

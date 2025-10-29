@@ -1,0 +1,138 @@
+:root {
+  --bg-color: #fdfcfa;
+  --highlight: #6e6e6e;
+  --highlight-dark: #3e3e3e;
+  --meat-bg: #dcdcdc;
+  --veg-bg: #e8f5e9;
+  --dessert-bg: #fce4ec;
+  --text-color: #2e2e2e;
+  --white: #ffffff;
+  --shadow: rgba(0, 0, 0, 0.05);
+  --shadow-hover: rgba(0, 0, 0, 0.1);
+  --shadow-img: rgba(0, 0, 0, 0.08);
+  --accent-color: #4a6572;
+  --box-hoover: hsl(220, 40%, 35%);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet');
+
+body {
+  font-family: "Quicksand", sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  text-align: center;
+  color: var(--highlight);
+  font-size: 2.5rem;
+  margin-top: 2rem;
+}
+
+h2 {
+  text-align: center;
+  color: var(--highlight-dark);
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  text-align: center;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+}
+
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 0;
+  margin: 2rem 0;
+}
+
+li {
+  list-style: none;
+  padding: 1rem;
+  border: 2px solid var(--highlight);
+  border-radius: 1rem;
+  width: 280px;
+  text-align: center;
+  box-shadow: 0 4px 10px var(--shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+li:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 14px var(--shadow-hover);
+}
+
+.meat {
+  background-color: var(--meat-bg);
+}
+
+.vegetarian {
+  background-color: var(--veg-bg);
+}
+
+.dessert {
+  background-color: var(--dessert-bg);
+}
+
+img {
+  width: 120px;
+  height: 120px;
+  border-radius: 12px;
+  object-fit: cover;
+  margin-bottom: 0.5rem;
+  box-shadow: 0 2px 6px var(--shadow-img);
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+button {
+  background-color: var(--white);
+  color: var(--highlight-dark);
+  border: 2px solid var(--highlight-dark);
+  font-size: 1.1rem;
+  padding: 0.8rem 1.4rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--highlight-dark);
+  color: var(--white);
+  transform: scale(1.05);
+}
+
+footer {
+  font-size: 1rem;
+  text-align: center;
+  padding: 1rem 0;
+}
+
+footer a {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+footer a:hover {
+  color: var(--box-hoover);
+  text-decoration: underline;
+} 
+
