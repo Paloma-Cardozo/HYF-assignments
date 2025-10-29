@@ -1,197 +1,185 @@
-@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
 
 :root {
-  --primary-color: #5a427c;
-  --secondary-color: #ba8ce8;
-  --background-color: #f9f6ff;
+  --background-color: #fefefe;
   --title-color: #ffffff;
-  --text-color: #3d3d3d;
-  --spacing: 1rem;
+  --text-color: #1a1a1a;
+  --border-color: #ececec;
+  --accent-color: #5a427c;
+  --accent-light: #bca4e6;
+  --muted-color: #777;
+  --transition: all 0.25s ease;
+  --max-width: 900px;
+  --radius: 12px;
 }
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html,
 body {
-  margin: 0;
-  padding: 0;
   background-color: var(--background-color);
   color: var(--text-color);
-  font-family: "Raleway", "Segoe UI", system-ui, sans-serif;
-  line-height: 1.6;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  font-family: "Inter", "Raleway", system-ui, sans-serif;
+  line-height: 1.7;
 }
 
 header {
-  background: linear-gradient(
-    135deg,
-    var(--primary-color),
-    var(--secondary-color)
-  );
-  color: var(--title-color);
-  padding: calc(var(--spacing) * 2) var(--spacing);
+  background: linear-gradient(180deg, #fafafa 0%, #fff 100%);
+  padding: 5rem 1rem 3rem;
   text-align: center;
-  margin-bottom: var(--spacing);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .title {
-  margin: 0;
-  font-size: 1.6rem;
+  font-size: 2.8rem;
   font-weight: 700;
-  letter-spacing: 1px;
+  color: var(--accent-color);
 }
 
 .sub-title {
-  margin: 0.4rem 0 0;
-  font-weight: 300;
-  color: #ecf0f1;
-  letter-spacing: 0.4px;
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+  font-weight: 400;
+  color: var(--muted-color);
 }
 
-section {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 0 var(--spacing);
-  margin-bottom: var(--spacing);
+.location,
+.links {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+}
+
+.links a {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.links a:hover {
+  color: var(--accent-light);
+}
+
+main {
+  max-width: var(--max-width);
+  margin: 3rem auto;
+  padding: 0 1.5rem;
 }
 
 .section-title {
-  color: var(--primary-color);
-  border-bottom: 2px solid var(--secondary-color);
-  padding-bottom: 0.5rem;
-  margin-bottom: 0.75rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--accent-color);
+  border-left: 4px solid var(--accent-light);
+  padding-left: 0.75rem;
+  margin-bottom: 1rem;
 }
 
 .main-text {
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
+  color: var(--text-color);
 }
 
 ul {
   list-style: none;
-  padding: 0;
+  margin-top: 1rem;
 }
 
 .item {
+  background: var(--title-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
   margin-bottom: 1rem;
-  padding: 0.9rem;
-  background-color: var(--title-color);
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
-  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  padding: 1rem 1.25rem;
+  transition: var(--transition);
 }
 
 .item:hover {
   transform: translateY(-3px);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
 }
 
 figure {
   text-align: center;
-  margin: var(--spacing) auto 2rem;
-  max-width: 800px;
-  padding: 0 var(--spacing);
+  margin: 4rem auto 2rem;
+  max-width: var(--max-width);
+  padding: 0 1.5rem;
 }
 
 .image {
-  width: 100%;
-  max-width: 400px;
-  height: auto;
-  border-radius: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  margin: 0 auto;
-  display: block;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  filter: grayscale(10%);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: var(--transition);
   object-fit: cover;
 }
 
+.image:hover {
+  filter: grayscale(0%);
+  transform: scale(1.02);
+}
+
 .caption {
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   font-style: italic;
-  color: var(--primary-color);
+  color: var(--muted-color);
+  font-size: 0.95rem;
 }
 
 .color-button {
-  display: inline-block;
-  margin: 2rem auto;
-  padding: 1rem;
-  font-family: "Raleway", sans-serif;
+  display: block;
+  margin: 3rem auto;
+  padding: 0.9rem 1.8rem;
   font-size: 1rem;
-  background: linear-gradient(
-    135deg,
-    var(--primary-color),
-    var(--secondary-color)
-  );
-  color: white;
+  background: var(--accent-color);
+  color: var(--title-color);
   border: none;
-  border-radius: 10px;
+  border-radius: var(--radius);
   cursor: pointer;
-  text-align: center;
-  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
-  outline: none;
-  min-width: 160px;
-  align-self: center;
+  transition: var(--transition);
 }
 
 .color-button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 12px rgba(44, 62, 80, 0.2);
-  opacity: 0.95;
+  background: var(--accent-light);
+  color: var(--title-color);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
-.color-button:active {
-  transform: translateY(0);
+section,
+figure {
+  opacity: 0;
+  transform: translateY(15px);
+  animation: fadeIn 0.8s ease forwards;
 }
 
-.color-button:focus {
-  box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.18);
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (min-width: 900px) {
-  :root {
-    --spacing: 2rem;
+  header {
+    padding: 6rem 2rem 4rem;
   }
 
   .title {
-    font-size: 2.6rem;
+    font-size: 3.2rem;
   }
 
-  .sub-title {
-    font-size: 1.05rem;
+  main {
+    padding: 0 2rem;
   }
 
-  section {
-    max-width: 1000px;
-    padding: 0 var(--spacing);
-  }
-
-  figure {
-    display: flex;
-    gap: 2rem;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .image {
-    width: 250px;
-    height: 250px;
-    border-radius: 16px;
-    object-fit: cover;
-  }
-
-  .item {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1.25rem;
-  }
-
-  .color-button {
-    padding: 0.9rem;
-    font-size: 1.05rem;
-    border-radius: 12px;
-    min-width: 200px;
+  .section-title {
+    font-size: 1.6rem;
   }
 }
