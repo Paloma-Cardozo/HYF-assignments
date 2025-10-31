@@ -1,46 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="robots" content="index, follow"/>
-    <meta name="description" content="Portfolio of Paloma Cardozo, Front-End Developer focused on social impact, accessibility and innovation."/>
-    <meta name="author" content="Paloma Cardozo"/>
-    <title>Paloma Cardozo | Front-End Developer Portfolio</title>
-    <link rel="stylesheet" href="styles.css"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap"/>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index, follow" />
+    <meta
+      name="description"
+      content="Portfolio of Paloma Cardozo: Legal and Tech Professional." />
+    <meta name="author" content="Paloma Cardozo" />
+    <title>Paloma Cardozo Portfolio</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" />
   </head>
   <body>
     <section id="loader" class="intro">
       <div id="stars-container"></div>
-      <div  class="oath-container fade-in-up">
+      <div class="oath-container fade-in-up">
         <blockquote>
-          <p>“I swear to use my scientific knowledge for the good of Humanity. I promise never to harm any person in my search for enlightenment…”</p>
-          <p>“I shall be courageous and careful in my quest for greater knowledge about the mysteries that surround us. I shall not use scientific knowledge for my own personal gain or give it to those who seek to destroy the wonderful planet on which we live. If I break this oath, may the beauty and wonder of the Universe forever remain hidden from me.”</p>
-          <cite>— From <em><strong>"George's Secret Key to the Universe"</strong></em> by Lucy & Stephen Hawking (2007)</cite>
+          <p>
+            “I swear to use my scientific knowledge for the good of Humanity. I
+            promise never to harm any person in my search for enlightenment…”
+          </p>
+          <p>
+            “I shall be courageous and careful in my quest for greater knowledge
+            about the mysteries that surround us. I shall not use scientific
+            knowledge for my own personal gain or give it to those who seek to
+            destroy the wonderful planet on which we live. If I break this oath,
+            may the beauty and wonder of the Universe forever remain hidden from
+            me.”
+          </p>
+          <cite
+            >— From
+            <em><strong>"George's Secret Key to the Universe"</strong></em> by
+            Lucy & Stephen Hawking (2007)</cite
+          >
         </blockquote>
-      </div>    
-      <button aria-label="Enter Paloma Cardozo's portfolio" id="enterBtn">Enter My Portfolio</button>
+      </div>
+      <button aria-label="Enter Paloma Cardozo's portfolio" id="enterBtn">
+        Enter My Portfolio
+      </button>
     </section>
-    <div id="mainContent" style="display: none;">
+    <div id="mainContent" style="display: none">
       <header>
         <button id="toggle-dark" aria-label="Toggle dark and light mode">
-            Toggle Dark Mode
-        </button>        
-        <img src="./Image.jpg" alt="Portrait of Paloma Cardozo" class="profile-img">
+          Toggle Dark Mode
+        </button>
+        <img
+          src="./Image.jpg"
+          alt="Portrait of Paloma Cardozo"
+          class="profile-img" />
         <h1>Paloma Cardozo</h1>
         <h2>Front-End Developer</h2>
         <p>
-          Hi, I’m Paloma — a passionate front-end developer with a strong drive to
-          create impactful, accessible, and innovative websites.
-          <br/>
+          Hi, I’m Paloma — a passionate front-end developer with a strong drive
+          to create impactful, accessible, and innovative websites.
+          <br />
           I’m constantly exploring new technologies and expanding my skills,
           especially in areas that intersect with social impact, sustainability,
           and corporate responsibility.
-          <br/>
+          <br />
           I’m eager to apply my growing knowledge to projects that make a
           difference.
-          <br/>
+          <br />
           Let’s connect and create solutions that inspire change.
         </p>
       </header>
@@ -50,9 +73,18 @@
           <h2>Connect with me</h2>
           <form id="contact-form">
             <label for="user_email">Email</label>
-            <input id="user_email" type="email" name="user_email" placeholder="Your email" required aria-label="Email address" autocomplete="email"/>
+            <input
+              id="user_email"
+              type="email"
+              name="user_email"
+              placeholder="Your email"
+              required
+              aria-label="Email address"
+              autocomplete="email" />
             <small id="email-error" class="error-message"></small>
-            <button type="submit" aria-label="Send your email to connect with Paloma">
+            <button
+              type="submit"
+              aria-label="Send your email to connect with Paloma">
               Send
             </button>
             <p id="form-message" class="form-message" aria-live="polite"></p>
@@ -60,19 +92,33 @@
         </section>
       </main>
       <footer>
-        <p id="visit-counter" class="sr-only">Total visits: <span id="visit-count">Loading...</span></p>
-        <p class="text-sm text-muted">© 2025 Paloma Cardozo. Coded with 💛 by
-          <a href="https://www.linkedin.com/in/paloma-cardozo/" aria-label="LinkedIn profile" target="_blank" rel="noopener noreferrer">Paloma Cardozo</a>.
-          <br/> Created with purpose. Please don’t replicate without credit. Let’s build responsibly.</p>
+        <p id="visit-counter" class="sr-only">
+          Total visits: <span id="visit-count">Loading...</span>
+        </p>
+        <p class="text-sm text-muted">
+          © 2025 Paloma Cardozo. Coded with 💛 by
+          <a
+            href="https://www.linkedin.com/in/paloma-cardozo/"
+            aria-label="LinkedIn profile"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Paloma Cardozo</a
+          >. <br />
+          Created with purpose. Please don’t replicate without credit. Let’s
+          build responsibly.
+        </p>
       </footer>
-    </div>  
+    </div>
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <script>
-      (function(){
-      emailjs.init("TU7wzo1PceJ0EwbGC"); 
+      (function () {
+        emailjs.init("TU7wzo1PceJ0EwbGC");
       })();
     </script>
     <script src="script.js"></script>
-    <script data-goatcounter="https://palomacardozo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    <script
+      data-goatcounter="https://palomacardozo.goatcounter.com/count"
+      async
+      src="//gc.zgo.at/count.js"></script>
   </body>
 </html>
