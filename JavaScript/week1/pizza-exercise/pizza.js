@@ -1,4 +1,4 @@
-console.log("I love pizza");
+console.log("I love pizza 🍕");
 
 const pizzaMenu = {
   Hawaiian: 100,
@@ -11,17 +11,48 @@ const pizzaMenu = {
 };
 console.log(pizzaMenu);
 
-const myFavouritePizza = Object.keys(pizzaMenu)[2];
+// My favourite pizza and its price
+
+const myFavouritePizza = Object.keys(pizzaMenu)[1];
 console.log(myFavouritePizza);
 
-const priceFavouritePizza = Object.values(pizzaMenu)[2];
+const priceFavouritePizza = Object.values(pizzaMenu)[1];
 console.log(priceFavouritePizza);
 
-const amountPizza = 1;
-console.log(amountPizza);
+// Now I know how to ask the client! 🤭
 
-const familySize = true;
-
-console.log(
-  `New pizza order: ${myFavouritePizza}. The price of the pizza is: ${priceFavouritePizza}`
+const clientFavouritePizza = prompt(
+  "👩🏻‍🍳 Choose your pizza: Hawaiian, Four_Cheese, Margherita, Pepperoni, Diavola, Mushroom, Marinara 🍕"
 );
+
+const priceSelectedPizza = pizzaMenu[clientFavouritePizza];
+
+// Validate pizza exists and its price
+
+if (!priceSelectedPizza) {
+  console.log("Sorry! That pizza is not on the menu 🥲");
+} else {
+  console.log(
+    `👩🏻‍🍳 New pizza order: ${clientFavouritePizza}. The price of the pizza is: ${priceSelectedPizza} DKK 🍕`
+  );
+
+  // Amount of pizzas to order
+
+  const amountPizzas = Number(prompt("👩🏻‍🍳 How many pizzas do you want? 🍕"));
+
+  // Eat here or takeaway
+
+  const placeToEat = prompt("👩🏻‍🍳 Do you want takeaway? (yes/no) 🍽️");
+
+  const takeawayAnswer = placeToEat.toLowerCase() === "yes" ? true : false;
+
+  // Calculating total price of the order
+
+  const totalPrice = priceSelectedPizza * amountPizzas;
+
+  // Final message for the chef
+
+  console.log(
+    `👩🏻‍🍳 New pizza order (takeaway: ${takeawayAnswer}): ${amountPizzas} ${clientFavouritePizza}. The cost for the order is: ${totalPrice} DKK 🍕`
+  );
+}
