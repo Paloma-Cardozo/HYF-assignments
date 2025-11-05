@@ -1,0 +1,53 @@
+:root {
+  --main-color: #eef1ff;
+  --container-color: #ffffff;
+  --title-text-color: #5b6dcc;
+  --subtitle-text-color: #2d3a87;
+  --result-color: #747171;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--main-color);
+  font-family: "Inter", "Segoe UI", Roboto, sans-serif;
+  padding: 2rem;
+}
+
+.container {
+  background: var(--container-color);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+.title {
+  color: var(--title-text-color);
+  font-size: 3.5rem;
+  margin: 1rem;
+}
+
+.sub-title {
+  color: var(--subtitle-text-color);
+  font-size: 1.2rem;
+  margin: 1rem;
+  font-style: italic;
+}
+
+.solutions {
+  color: var(--subtitle-text-color);
+  font-size: 1.5rem;
+  margin: 2rem;
+}
+
+.result {
+  margin: 2.5rem;
+  color: var(--result-color);
+  font-size: 1.5rem;
+}
