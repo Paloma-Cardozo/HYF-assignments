@@ -72,7 +72,7 @@ incrementStepByStep(number);
 // Loops in functions:
 // 1. While Loop: Create a function with two parameters (stringToLog and numberOfTimesToLog). It should log out the stringToLog the amount of times specified in numberOfTimesToLog.
 
-const stringToLog = prompt("What do you want to say?");
+const stringToLog = prompt("What do you want to say to your loved ones?");
 const numberOfTimesToLog = Number(
   prompt("How many times do you want to say it?")
 );
@@ -96,3 +96,18 @@ function logString(stringToLog, numberOfTimesToLog) {
 }
 
 logString(stringToLog, numberOfTimesToLog);
+
+// Send emails:
+
+function sendEmailTo(recipient) {
+  console.log("email sent to " + recipient);
+}
+
+const recipientsWeirdFormat =
+  "benjamin@gmail.com|peter@gmail.com|hans@gmail.com|ahmad@gmail.com|sana@gmail.com|virgeen@gmail.com|mohammed@gmail.com";
+
+const recipientsGoodFormat = recipientsWeirdFormat.split("|");
+
+for (const recipient of recipientsGoodFormat) {
+  sendEmailTo(recipient);
+}
