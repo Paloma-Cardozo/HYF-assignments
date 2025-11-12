@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smart-Ease</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <div class="container">
+        <h1 class="title">Candy Helper App</h1>
+
+        <div class="form-container">
+          <input type="text" id="candyType" placeholder="Type of candy" />
+
+          <input
+            type="number"
+            id="candyQuantity"
+            placeholder="Quantity of candy in grams"
+            min="1" />
+        </div>
+        <button id="addCandyButton">Add Candy</button>
+
+        <div class="result" id="candyHelperApp"></div>
+      </div>
+    </main>
+    <script src="candyHelperApp.js"></script>
+  </body>
+</html>
