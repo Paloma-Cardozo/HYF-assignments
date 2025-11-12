@@ -1,4 +1,5 @@
 const boughtCandyPrices = [];
+const amountToSpend = Math.random() * 100;
 
 function addCandy(candyType, weight) {
   const pricePerGram = {
@@ -18,10 +19,8 @@ function addCandy(candyType, weight) {
   return `Added ${weight}g of ${candyType} for ${price}$.`;
 }
 
-const amountToSpend = Math.random() * 100;
-
 function canBuyMoreCandy() {
-  const totalSpent = boughtCandyPrices;
+  const totalSpent = boughtCandyPrices.reduce((sum, price) => sum + price, 0);
 
   if (totalSpent < amountToSpend) {
     return "You can buy more, so please do! 🍬🍭🍫";
@@ -31,7 +30,10 @@ function canBuyMoreCandy() {
 }
 
 document.getElementById("addCandyButton").addEventListener("click", () => {
-  const candyType = document.getElementById("candyType").value.trim();
+  const candyType = document
+    .getElementById("candyType")
+    .value.trim()
+    .toLowerCase();
   const weight = Number(document.getElementById("candyQuantity").value);
 
   const message = addCandy(candyType, weight);
