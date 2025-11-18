@@ -1,14 +1,13 @@
 const boughtCandyPrices = [];
 const amountToSpend = Math.random() * 100;
+const pricePerGram = {
+  sweet: 0.5,
+  chocolate: 0.7,
+  toffee: 1.1,
+  chewing_gum: 0.03,
+};
 
 function addCandy(candyType, weight) {
-  const pricePerGram = {
-    sweet: 0.5,
-    chocolate: 0.7,
-    toffee: 1.1,
-    chewing_gum: 0.03,
-  };
-
   if (!pricePerGram[candyType]) {
     return `Unknown candy type: ${candyType}`;
   }
