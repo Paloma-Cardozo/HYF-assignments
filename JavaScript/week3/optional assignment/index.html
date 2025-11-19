@@ -13,7 +13,7 @@
 
         <div class="form-container">
           <h2 class="sub-title">Adding an activity</h2>
-          <div class="input-group">
+          <div class="input-group-activities">
             <input type="date" id="activitiesDate" />
 
             <input
@@ -35,6 +35,21 @@
         <div class="form-container">
           <button id="showStatusButton">Show Status</button>
           <div class="result" id="allActivitiesResult"></div>
+        </div>
+
+        <div class="form-container">
+          <h2 class="sub-title">Set a limit of usage</h2>
+
+          <div class="input-group-limit">
+            <input
+              type="number"
+              id="activitiesLimit"
+              placeholder="Minutes limit" />
+
+            <button id="setLimitButton">Set limit</button>
+          </div>
+
+          <div class="result" id="limitSetUp"></div>
         </div>
       </div>
     </main>

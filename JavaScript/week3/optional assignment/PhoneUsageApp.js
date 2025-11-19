@@ -21,12 +21,14 @@ document.getElementById("addActivityButton").addEventListener("click", () => {
   );
 
   document.getElementById("saveActivity").innerHTML = `<p>${message}</p>`;
-
   console.log(message);
   console.log(activities);
 });
 
 // ⭐ Show status ⭐
+
+let totalTime = 0;
+let limit = 0;
 
 function showStatus(activities) {
   const allActivities = document.getElementById("allActivitiesResult");
@@ -39,13 +41,12 @@ function showStatus(activities) {
     return messageIsEmpty;
   }
 
-  const totalTimeSpent = activities.reduce(
-    (sum, activity) => sum + activity.duration,
-    0
-  );
+  totalTime = activities.reduce((sum, activity) => sum + activity.duration, 0);
 
-  const messageShowStatus = `You have added ${activities.length} activities. They amount to ${totalTimeSpent} minutes of usage`;
+  let messageShowStatus = `You have added ${activities.length} activities. They amount to ${totalTime} minutes of usage`;
+
   allActivities.innerHTML = `<p>${messageShowStatus}</p>`;
+  console.log(messageShowStatus);
   return messageShowStatus;
 }
 
@@ -54,3 +55,25 @@ document.getElementById("showStatusButton").addEventListener("click", () => {
 });
 
 // ⭐ Usage limit⭐
+
+function setLimit(totalTime, limit) {
+  const activitiesLimit = Number(
+    document.getElementById("activitiesLimit").value
+  );
+
+  limit = activitiesLimit;
+
+  let limitMessage = `<p>Your limit is set to ${limit} minutes of usage</p>`;
+
+  if (totalTime > limit) {
+    limitMessage += "Be careful! You have reached your limit! Take a break!";
+    console.log("You have reached your limit, no more smartphoning for you!");
+  }
+
+  document.getElementById("limitSetUp").innerHTML = `<p>${limitMessage}</p>`;
+  console.log(limitMessage);
+}
+
+document.getElementById("setLimitButton").addEventListener("click", () => {
+  setLimit(totalTime, limit);
+});
