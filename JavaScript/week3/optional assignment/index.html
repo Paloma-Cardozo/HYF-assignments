@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smart-Ease</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <div class="container">
+        <h1 class="title">Smart Phone Usage App</h1>
+
+        <div class="form-container">
+          <h2 class="sub-title">Adding an activity</h2>
+          <div class="input-group">
+            <input type="date" id="activitiesDate" />
+
+            <input
+              type="text"
+              id="activitiesContent"
+              placeholder="Activity you did on that date" />
+
+            <input
+              type="number"
+              id="activitiesDuration"
+              placeholder="Duration in minutes" />
+
+            <button id="addActivityButton">Add Activity</button>
+          </div>
+
+          <div class="result" id="saveActivity"></div>
+        </div>
+
+        <div class="form-container">
+          <button id="showStatusButton">Show Status</button>
+          <div class="result" id="allActivitiesResult"></div>
+        </div>
+      </div>
+    </main>
+    <script src="PhoneUsageApp.js"></script>
+  </body>
+</html>
