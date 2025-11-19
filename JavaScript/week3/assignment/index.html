@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smart-Ease</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <div class="container">
+        <h1 class="title">Note Taking App</h1>
+
+        <div class="form-container">
+          <h2 class="sub-title">Save your Notes</h2>
+          <div class="input-group">
+            <input
+              type="text"
+              id="notesContent"
+              placeholder="Enter your note here" />
+
+            <input
+              type="number"
+              id="notesId"
+              placeholder="Enter note ID"
+              min="1" />
+            <button id="addNoteButton">Add Note</button>
+          </div>
+          <div class="result" id="saveResult"></div>
+        </div>
+
+        <div class="form-container">
+          <h2 class="sub-title">Find your Notes</h2>
+          <div class="input-group">
+            <input
+              type="number"
+              id="findNoteId"
+              placeholder="Enter note ID to find"
+              min="1" />
+
+            <button id="findNoteButton">Find Note</button>
+          </div>
+          <div class="result" id="findResult"></div>
+        </div>
+
+        <div class="form-container">
+          <button id="logNotesButton">Show All Notes</button>
+          <div class="result" id="allNotesResult"></div>
+        </div>
+      </div>
+    </main>
+
+    <script src="NoteApp.js"></script>
+  </body>
+</html>
