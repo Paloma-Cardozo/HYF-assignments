@@ -2,23 +2,21 @@
 
 const activities = [];
 
-function addActivity(date, activity, duration) {
-  activities.push({ date, activity, duration });
-  return `Your activity from "${date}" with the name "${activity}" has been saved. It lasted for ${duration} minutes.`;
+function addActivity(activity, duration) {
+  const today = new Date().toLocaleDateString(); // ⭐ New feature: Get the current date and time ⭐
+
+  activities.push({ date: today, activity, duration });
+  return `Your activity from "${today}" with the name "${activity}" has been saved. It lasted for ${duration} minutes.`;
 }
 
 document.getElementById("addActivityButton").addEventListener("click", () => {
-  const activitiesDate = document.getElementById("activitiesDate").value;
+  // const activitiesDate = document.getElementById("activitiesDate").value; // 😃 Updated: No longer needed to get date from input 😃
   const activitiesContent = document.getElementById("activitiesContent").value;
   const activitiesDuration = Number(
     document.getElementById("activitiesDuration").value
   );
 
-  const message = addActivity(
-    activitiesDate,
-    activitiesContent,
-    activitiesDuration
-  );
+  const message = addActivity(activitiesContent, activitiesDuration);
 
   document.getElementById("saveActivity").innerHTML = `<p>${message}</p>`;
   console.log(message);
