@@ -102,7 +102,14 @@ function getSentimentScore(sentence) {
   for (let i = 0; i < words.length; i++) {
     const word = words[i];
 
-    if (positiveWords[word]) {
+    if (
+      positiveWords[word] === undefined &&
+      negativeWords[word] === undefined
+    ) {
+      console.log(
+        `Your word: "${word}" is neutral according to the sentiment dictionary.`
+      );
+    } else if (positiveWords[word]) {
       sentimentScoreObject.score += positiveWords[word];
       sentimentScoreObject.positiveWords.push(word);
     } else if (negativeWords[word]) {
@@ -117,12 +124,8 @@ function getSentimentScore(sentence) {
 const result = getSentimentScore(sentence);
 console.log("Sentiment analysis result:", result);
 
-/*
+// ⭐ Count characters
 
-
-
-Find characters
-let character = {};
 const abc = [
   "a",
   "b",
@@ -151,47 +154,39 @@ const abc = [
   "y",
   "z",
 ];
-function getCharacterFrequencies(sentence, abc) {
-  for (let i = 0; i < sentence.length; i++) {
-    if (sentence[i] == abc[i]) {
-      character.push();
+
+function getCharacterFrequencies(sentenceToCount, abc) {
+  const lowerSentence = sentenceToCount.toLowerCase();
+  const characterCounts = {};
+
+  for (let i = 0; i < lowerSentence.length; i++) {
+    const character = lowerSentence[i];
+
+    if (abc.includes(character)) {
+      characterCounts[character] = (characterCounts[character] || 0) + 1;
     }
   }
-}
 
-console.log(getCharacterFrequencies("happy"));*/
-/*
-function getCharacterFrequencies(word) {
-  const output = {
-    characters: [],
-    length: word.length,
-  };
-
-  for (let i = 0; i < word.length; i++) {}
-}
-
-
-
-
-
-{
-  characters: [
-    {
-      character: 'a',
-      count: 1
-    },
-    {
-      character: 'h',
-      count: 1
-    },
-    {
-      character: 'p',
-      count: 2
-    },
-    {
-      character: 'y',
-      count: 1
+  const charactersArray = [];
+  for (let i = 0; i < abc.length; i++) {
+    const character = abc[i];
+    if (characterCounts[character]) {
+      charactersArray.push({
+        character: character,
+        count: characterCounts[character],
+      });
     }
-  ], length: 5
+  }
+
+  return {
+    characters: charactersArray,
+    length: charactersArray.reduce((sum, c) => sum + c.count, 0),
+  };
 }
-*/
+
+const sentenceToCount = prompt("Enter a sentence:");
+console.log(getCharacterFrequencies(sentenceToCount, abc));
+
+// Palindromic substring
+
+// Write a function that finds the longest palindromic substring of a given string.
