@@ -87,7 +87,7 @@ let negativeWords = {
 };
 
 const sentence = prompt(
-  "Write the first sentence that come to your mind when thinking about your friend"
+  "Write down the first five words that come to mind when you think of your friend"
 );
 
 function getSentimentScore(sentence) {
@@ -107,7 +107,7 @@ function getSentimentScore(sentence) {
       negativeWords[word] === undefined
     ) {
       console.log(
-        `Your word: "${word}" is neutral according to the sentiment dictionary.`
+        `Your word: "${word}" is neutral according to the dictionary of feelings.`
       );
     } else if (positiveWords[word]) {
       sentimentScoreObject.score += positiveWords[word];
@@ -122,7 +122,7 @@ function getSentimentScore(sentence) {
 }
 
 const result = getSentimentScore(sentence);
-console.log("Sentiment analysis result:", result);
+console.log("Result of the sentiment analysis of your words:", result);
 
 // ⭐ Count characters
 
@@ -184,9 +184,39 @@ function getCharacterFrequencies(sentenceToCount, abc) {
   };
 }
 
-const sentenceToCount = prompt("Enter a sentence:");
+const sentenceToCount = prompt(
+  "Enter a sentence to have its characters counted:"
+);
 console.log(getCharacterFrequencies(sentenceToCount, abc));
 
-// Palindromic substring
+// ⭐ Palindromic substring
 
-// Write a function that finds the longest palindromic substring of a given string.
+function longestPalindrome(string) {
+  let longest = "";
+
+  for (let i = 0; i < string.length; i++) {
+    let oddPalindrome = expandAroundCenter(string, i, i);
+    if (oddPalindrome.length > longest.length) {
+      longest = oddPalindrome;
+    }
+
+    let evenPalindrome = expandAroundCenter(string, i, i + 1);
+    if (evenPalindrome.length > longest.length) {
+      longest = evenPalindrome;
+    }
+  }
+
+  return longest;
+}
+
+function expandAroundCenter(string, left, right) {
+  while (left >= 0 && right < string.length && string[left] === string[right]) {
+    left--;
+    right++;
+  }
+
+  return string.slice(left + 1, right);
+}
+
+const string = prompt("Enter a word to find its greatest palindrome:");
+console.log(longestPalindrome(string));
