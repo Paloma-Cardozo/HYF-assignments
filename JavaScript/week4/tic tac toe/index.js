@@ -79,18 +79,18 @@ let currentPlayer = "X";
 function playPrompt() {
   while (true) {
     console.log(getRenderedGame(position));
-    console.log("Turno de: " + currentPlayer);
+    console.log("Turn: " + currentPlayer);
 
-    let row = parseInt(prompt("Ingresa la fila (0, 1 o 2):"));
-    let col = parseInt(prompt("Ingresa la columna (0, 1 o 2):"));
+    let row = parseInt(prompt("Enter row (0, 1 o 2):"));
+    let col = parseInt(prompt("Enter column (0, 1 o 2):"));
 
     if (isNaN(row) || isNaN(col) || row < 0 || row > 2 || col < 0 || col > 2) {
-      console.log("Coordenadas inválidas.");
+      console.log("Invalid coordinates.");
       continue;
     }
 
     if (position[row][col] !== "") {
-      console.log("Esa casilla ya está ocupada.");
+      console.log("That cell is already occupied.");
       continue;
     }
 
@@ -98,11 +98,11 @@ function playPrompt() {
 
     if (getWinner(position)) {
       console.log(getRenderedGame(position));
-      console.log("Ganador: " + currentPlayer);
+      console.log("Winner: " + currentPlayer);
       return;
     } else if (isBoardFull(position)) {
       console.log(getRenderedGame(position));
-      console.log("Empate.");
+      console.log("Draw.");
       return;
     }
 
