@@ -102,6 +102,7 @@ function playPrompt() {
       return;
     } else if (isBoardFull(position)) {
       console.log(getRenderedGame(position));
+
       console.log("Draw.");
       return;
     }
