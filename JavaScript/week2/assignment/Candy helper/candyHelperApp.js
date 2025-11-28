@@ -1,11 +1,11 @@
-const boughtCandyPrices = [];
-const amountToSpend = Math.random() * 100;
 const pricePerGram = {
   sweet: 0.5,
   chocolate: 0.7,
   toffee: 1.1,
   chewing_gum: 0.03,
 };
+const boughtCandyPrices = [];
+const amountToSpend = Math.random() * 100;
 
 function addCandy(candyType, weight) {
   if (!pricePerGram[candyType]) {
