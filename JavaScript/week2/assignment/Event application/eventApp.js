@@ -1,4 +1,6 @@
-const daysUntilEvent = Number(prompt("How many days until the event? 🗓️"));
+const input = prompt("How many days until the event? 🗓️");
+const daysUntilEvent = Number(input);
+
 const weekdays = [
   "Sunday",
   "Monday",
@@ -11,14 +13,19 @@ const weekdays = [
 const today = new Date();
 
 function getEventDay(daysUntilEvent) {
-  const todayIndex = today.getDay();
-  const eventIndex = (todayIndex + daysUntilEvent) % 7;
-  return weekdays[eventIndex];
+  if (!input || isNaN(daysUntilEvent) || daysUntilEvent < 0) {
+    document.getElementById("eventApp").innerHTML = `
+    <p>Please enter a valid, non-negative number.</p>
+  `;
+  } else {
+    const todayIndex = today.getDay();
+    const eventIndex = (todayIndex + daysUntilEvent) % 7;
+
+    document.getElementById("eventApp").innerHTML = `
+  <p>Today is: ${weekdays[todayIndex]}</p>
+  <p>The event in ${daysUntilEvent} days will be on: ${weekdays[eventIndex]}</p>
+`;
+  }
 }
 
-document.getElementById("eventApp").innerHTML = `
-  <p>Today is: ${weekdays[today.getDay()]}</p>
-  <p>The event in ${daysUntilEvent} days will be on: ${getEventDay(
-  daysUntilEvent
-)}</p>
-`;
+getEventDay(daysUntilEvent);
