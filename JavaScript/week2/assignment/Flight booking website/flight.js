@@ -7,7 +7,7 @@ const gender = prompt("What is your gender? (male/female) ✈️")
 
 function getFullName(firstName, surName, useFormalName, gender) {
   if (!firstName || !surName) {
-    return "Error: Please provide both your first name and surname.";
+    throw new Error("Please provide both your first name and surname.");
   }
 
   let fullName = `${firstName} ${surName}`;
@@ -25,13 +25,13 @@ function getFullName(firstName, surName, useFormalName, gender) {
   return fullName;
 }
 
-const fullName1 = getFullName("Paloma", "Cardozo", true, "female");
-const fullName2 = getFullName("Carlos", "Segrera", false, "male");
-const fullName = getFullName(firstName, surName, useFormalName, gender);
-
-console.log(fullName1);
-console.log(fullName2);
+let fullNameResult;
+try {
+  fullNameResult = getFullName(firstName, surName, useFormalName, gender);
+} catch (error) {
+  fullNameResult = error.message;
+}
 
 document.getElementById("flight").innerHTML = `
-  <p class="result">${fullName}</p>
+  <p class="result">${fullNameResult}</p>
 `;
