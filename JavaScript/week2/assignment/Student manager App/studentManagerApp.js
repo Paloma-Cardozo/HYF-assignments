@@ -3,31 +3,31 @@ const class07Students = [];
 function addStudentToClass(studentName, class07Students) {
   if (studentName === "") {
     return "⚠️ You must enter a name to add a student! ⚠️";
-  } else {
-    if (class07Students.includes(studentName)) {
-      return `⚠️ Student ${studentName} is already in the class. ⚠️`;
-    } else {
-      if (studentName === "Queen") {
-        class07Students.push(studentName);
-        return (
-          `Student ${studentName} has been added.` +
-          " " +
-          "👑 Welcome, Queen! You have been added to the class. 👑"
-        );
-      } else {
-        if (class07Students.length >= 6) {
-          return "⚠️ Cannot add more students to class 07. ⚠️";
-        } else {
-          class07Students.push(studentName);
-          return (
-            `Student ${studentName} has been added.` +
-            " " +
-            "You can add more students to class 07! 😊"
-          );
-        }
-      }
-    }
   }
+
+  if (class07Students.includes(studentName)) {
+    return `⚠️ Student ${studentName} is already in the class. ⚠️`;
+  }
+
+  if (studentName === "Queen") {
+    class07Students.push(studentName);
+    return (
+      `Student ${studentName} has been added.` +
+      " " +
+      "👑 Welcome, Queen! You have been added to the class. 👑"
+    );
+  }
+
+  if (class07Students.length >= 6) {
+    return "⚠️ Cannot add more students to class 07. ⚠️";
+  }
+
+  class07Students.push(studentName);
+  return (
+    `Student ${studentName} has been added.` +
+    " " +
+    "You can add more students to class 07! 😊"
+  );
 }
 
 function getNumberOfStudents() {
