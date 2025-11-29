@@ -16,24 +16,42 @@
           <div class="input-group-activities">
             <!--  <input type="date" id="activitiesDate" /> 😃 Updated: No longer needed to get date from input 😃 -->
 
+            <label for="activitiesContent" class="visually-hidden"
+              >Activity you did</label
+            >
             <input
+              class="input"
               type="text"
               id="activitiesContent"
               placeholder="Activity you did" />
 
+            <label for="activitiesDuration" class="visually-hidden"
+              >Duration in minutes</label
+            >
             <input
+              class="input"
               type="number"
               id="activitiesDuration"
               placeholder="Duration in minutes" />
 
-            <button id="addActivityButton">Add Activity</button>
+            <button
+              type="button"
+              class="activityButton button"
+              id="addActivityButton">
+              Add Activity
+            </button>
           </div>
 
           <div class="result" id="saveActivity"></div>
         </div>
 
         <div class="form-container">
-          <button id="showStatusButton">Show Status</button>
+          <button
+            type="button"
+            class="statusButton button"
+            id="showStatusButton">
+            Show Status
+          </button>
           <div class="result" id="allActivitiesResult"></div>
         </div>
 
@@ -41,12 +59,21 @@
           <h2 class="sub-title">Set a limit of usage</h2>
 
           <div class="input-group-limit">
+            <label for="activitiesLimit" class="visually-hidden"
+              >Minutes limit</label
+            >
             <input
+              class="input"
               type="number"
               id="activitiesLimit"
               placeholder="Minutes limit" />
 
-            <button id="setLimitButton">Set limit</button>
+            <button
+              type="button"
+              class="limitButton button"
+              id="setLimitButton">
+              Set limit
+            </button>
           </div>
 
           <div class="result" id="limitSetUp"></div>
