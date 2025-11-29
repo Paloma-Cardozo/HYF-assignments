@@ -5,16 +5,17 @@ function identifyCard(cardNumberString) {
 
   if (firstDigit === "4") {
     return "Visa";
-  } else if (
+  }
+  if (
     (firstTwo >= "51" && firstTwo <= "55") ||
     (firstFour >= "2221" && firstFour <= "2720")
   ) {
     return "MasterCard";
-  } else if (firstTwo === "34" || firstTwo === "37") {
-    return "American Express";
-  } else {
-    return "Unknown";
   }
+  if (firstTwo === "34" || firstTwo === "37") {
+    return "American Express";
+  }
+  return "Unknown";
 }
 
 function formatCreditCardNumber(cardNumberString) {

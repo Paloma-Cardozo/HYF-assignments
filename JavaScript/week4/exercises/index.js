@@ -1,5 +1,4 @@
 // ⭐ Fibonacci sequence
-
 let values = [0, 1];
 
 function getFibonacciNumber(numberPosition) {
@@ -24,18 +23,18 @@ console.log(
 );
 
 // ⭐ Fizz Buzz
-
 function printNumbers(a, b) {
   for (let i = 1; i <= 100; i++) {
     if (i % a === 0 && i % b === 0) {
       console.log("FizzBuzz");
-    } else if (i % a === 0) {
-      console.log("Fizz");
-    } else if (i % b === 0) {
-      console.log("Buzz");
-    } else {
-      console.log(i);
     }
+    if (i % a === 0) {
+      console.log("Fizz");
+    }
+    if (i % b === 0) {
+      console.log("Buzz");
+    }
+    console.log(i);
   }
 }
 
@@ -46,7 +45,6 @@ const FizzBuzz = printNumbers(
 );
 
 // ⭐ Sentiment analyser
-
 let positiveWords = {
   love: 20,
   cute: 20,
@@ -109,10 +107,12 @@ function getSentimentScore(sentence) {
       console.log(
         `Your word: "${word}" is neutral according to the dictionary of feelings.`
       );
-    } else if (positiveWords[word]) {
+    }
+    if (positiveWords[word]) {
       sentimentScoreObject.score += positiveWords[word];
       sentimentScoreObject.positiveWords.push(word);
-    } else if (negativeWords[word]) {
+    }
+    if (negativeWords[word]) {
       sentimentScoreObject.score += negativeWords[word];
       sentimentScoreObject.negativeWords.push(word);
     }
@@ -125,7 +125,6 @@ const result = getSentimentScore(sentence);
 console.log("Result of the sentiment analysis of your words:", result);
 
 // ⭐ Count characters
-
 const abc = [
   "a",
   "b",
@@ -190,7 +189,6 @@ const sentenceToCount = prompt(
 console.log(getCharacterFrequencies(sentenceToCount, abc));
 
 // ⭐ Palindromic substring
-
 function longestPalindrome(string) {
   let longest = "";
 
