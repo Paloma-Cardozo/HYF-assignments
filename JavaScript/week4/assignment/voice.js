@@ -32,18 +32,18 @@ function getReply(command) {
 
     if (savedName.toLowerCase() === capitalized.toLowerCase()) {
       return respond("I already know your name");
-    } else {
-      savedName = capitalized;
-      return respond(`Nice to meet you ${capitalized}`);
     }
+
+    savedName = capitalized;
+    return respond(`Nice to meet you ${capitalized}`);
   }
 
   if (text === "what is my name") {
     if (savedName) {
       return respond(`Your name is ${savedName}`);
-    } else {
-      return respond("I don't know your name yet");
     }
+
+    return respond("I don't know your name yet");
   }
 
   const addMatch = text.match(/^add (.+) to my todo$/i);
@@ -62,19 +62,18 @@ function getReply(command) {
     if (index >= 0) {
       todoList.splice(index, 1);
       return respond(`Removed ${item} from your todo`);
-    } else {
-      return respond(`${item} is not on your todo`);
     }
+
+    return respond(`${item} is not on your todo`);
   }
 
   if (text === "what is on my todo") {
     if (todoList.length === 0) {
       return respond("You have no todos");
-    } else {
-      return respond(
-        `You have ${todoList.length} todos: ${todoList.slice(0).join(", ")}`
-      );
     }
+    return respond(
+      `You have ${todoList.length} todos: ${todoList.slice(0).join(", ")}`
+    );
   }
 
   if (text === "what day is it today") {
@@ -108,9 +107,8 @@ function getReply(command) {
     let ms = 0;
     if (unit.startsWith("second")) {
       ms = amount * 1000;
-    } else {
-      ms = amount * 60 * 1000;
     }
+    ms = amount * 60 * 1000;
 
     const timerId = setTimeout(() => {
       respond("Timer done");
