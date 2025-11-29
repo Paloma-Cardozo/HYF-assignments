@@ -4,7 +4,7 @@ const names = [
   "Peter",
   "Ahmad",
   "Yana",
-  "kristina",
+  "Kristina",
   "Rasmus",
   "Samuel",
   "Katrine",
@@ -15,7 +15,12 @@ const nameToRemove = "Ahmad";
 
 const indexToRemove = names.indexOf(nameToRemove);
 
-names.splice(indexToRemove, 1);
+if (indexToRemove >= 0) {
+  names.splice(indexToRemove, 1);
+  console.log(`${nameToRemove} was removed.`);
+} else {
+  console.log(`${nameToRemove} was not found in the list.`);
+}
 
 console.log(names);
 
@@ -30,17 +35,13 @@ function getTimeInformation(travelInformation) {
   const timeFormula =
     travelInformation.destinationDistance / travelInformation.speed; // hours (possible float number)
 
-  function getMinutes() {
-    const hoursFormula = Math.floor(timeFormula); // hours (integer number)
+  const hoursFormula = Math.floor(timeFormula); // hours (integer number)
 
-    const fractionalFormula = timeFormula - hoursFormula; // fractional part of hours
+  const fractionalFormula = timeFormula - hoursFormula; // fractional part of hours
 
-    const minutesFormula = Math.round(fractionalFormula * 60); // minutes (integer number)
+  const minutesFormula = Math.round(fractionalFormula * 60); // minutes (integer number)
 
-    return `The travel will take ${hoursFormula} hours and ${minutesFormula} minutes.`;
-  }
-
-  return getMinutes();
+  return `The travel will take ${hoursFormula} hours and ${minutesFormula} minutes.`;
 }
 
 const travelTime = getTimeInformation(travelInformation);
@@ -70,14 +71,15 @@ const seriesDurations = [
 ];
 
 function getTimeWatchingSeries(seriesDurations) {
-  const lifeExpectancy = 80 * 365 * 24 * 60; // life expectancy in minutes
+  const lifeExpectancyInMinutes = 80 * 365 * 24 * 60; // life expectancy in minutes
   let totalPercentage = 0;
 
   for (let i = 0; i < seriesDurations.length; i++) {
     const series = seriesDurations[i];
     const seriesInMinutes =
       series.days * 24 * 60 + series.hours * 60 + series.minutes; // series in minutes
-    const percentageWatchingSeries = (seriesInMinutes * 100) / lifeExpectancy;
+    const percentageWatchingSeries =
+      (seriesInMinutes * 100) / lifeExpectancyInMinutes;
 
     totalPercentage += percentageWatchingSeries;
 
