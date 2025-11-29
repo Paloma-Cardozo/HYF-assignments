@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Payment Form</title>
+  </head>
+
+  <body>
+    <header class="placeholder-top">
+      <h1 class="placeholder-title">SOME HEADER</h1>
+      <p class="placeholder-text">Some optional stuff.</p>
+    </header>
+
+    <div class="payment-container">
+      <header class="order-summary">
+        <h2 class="summary-title">Order Summary</h2>
+        <p class="total">
+          <span>Total</span>
+          <span>$333 / month</span>
+        </p>
+        <hr class="line" />
+        <p class="total">
+          <span class="strong"><strong>Total</strong></span>
+          <span class="strong"><strong>$100</strong></span>
+        </p>
+      </header>
+
+      <form class="form">
+        <fieldset class="payment-method" aria-labelledby="payment-method-label">
+          <legend class="title" id="payment-method-label">
+            Payment Method
+          </legend>
+
+          <label class="cards">
+            <input type="radio" name="payment" value="card" required />
+            <img
+              src="https://i.postimg.cc/sgqpLHq8/65f0775e8108b93f60344a15996b37e50f61010e.png"
+              alt="Credit or Debit Card" />
+            <span class="option">Credit / Debit</span>
+          </label>
+
+          <label class="cards">
+            <input type="radio" name="payment" value="paypal" required />
+            <img
+              src="https://i.postimg.cc/Fzwrvc46/562ee5dbff879205418586614c9200009aa5fe77.png"
+              alt="PayPal" />
+            <span class="option">PayPal</span>
+          </label>
+        </fieldset>
+
+        <fieldset class="card-info" aria-labelledby="card-info-label">
+          <legend class="title" id="card-info-label">Card Info</legend>
+
+          <div class="card-number">
+            <label for="card-number">Card number</label>
+            <div class="input-with-icon">
+              <input
+                type="text"
+                id="card-number"
+                placeholder="1234 1234 1234 1234"
+                name="card-number"
+                required />
+              <img
+                src="https://i.postimg.cc/3Jr3Qj4V/Vector.png"
+                alt="help"
+                class="help-icon"
+                title="Enter the 16-digit number on your card." />
+            </div>
+          </div>
+
+          <div class="exp-date">
+            <label for="exp-date">Expiry date</label>
+            <input
+              type="text"
+              id="exp-date"
+              placeholder="MM / YY"
+              name="exp-date"
+              required />
+          </div>
+
+          <div class="sec-code">
+            <label for="sec-code">Security code</label>
+            <div class="input-with-icon">
+              <input
+                type="text"
+                id="sec-code"
+                placeholder="CVV"
+                name="sec-code"
+                required />
+              <img
+                src="https://i.postimg.cc/3Jr3Qj4V/Vector.png"
+                alt="help"
+                class="help-icon"
+                title="You’ll find this 3-digit code on the back of your card." />
+            </div>
+          </div>
+        </fieldset>
+
+        <button class="button" type="submit">Buy now</button>
+        <a href="/help" class="help">Need Help?</a>
+      </form>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
