@@ -59,8 +59,8 @@ body {
   font-size: 1.2rem;
 }
 
-input,
-button {
+.input,
+.button {
   padding: 16px 20px;
   border: none;
   border-radius: 16px;
@@ -69,24 +69,35 @@ button {
   margin: 0.5rem;
 }
 
-button {
+.button {
   color: var(--container-color);
   background: var(--button-color);
   cursor: pointer;
   transition: all 0.15s ease;
 }
 
-button:hover {
+.button:hover {
   box-shadow: 0 7px 14px rgba(23, 23, 39, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
 }
 
-.form-container input {
+.form-container .input {
   flex: 1 1 200px;
   max-width: 400px;
 }
 
-.form-container button {
+.form-container .button {
   flex: 0 0 auto;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  border: 0;
+  white-space: nowrap;
 }
 
 @media (min-width: 768px) {

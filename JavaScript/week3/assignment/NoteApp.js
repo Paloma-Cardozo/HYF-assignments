@@ -3,20 +3,38 @@
 const notes = [];
 
 function saveNote(content, id) {
-  const date = new Date(); // ⭐ Unique feature: Get the current date and time ⭐
-  notes.push({ content: content, id: id, date: date });
+  const numberID = Number(id);
 
-  return `Your note: "${content}" has been saved with the ID: ${id}! 🗒️🖋️`;
+  if (isNaN(numberID) || numberID <= 0) {
+    alert("Please enter a valid ID greater than 0");
+    return "Error: Invalid ID";
+  }
+
+  const existingNote = notes.find((note) => note.id === numberID);
+
+  if (existingNote) {
+    alert(
+      `A note with ID ${numberID} already exists. Please use a different ID.`
+    );
+    return "Error: Duplicate ID";
+  }
+
+  const date = new Date(); // ⭐ Unique feature: Get the current date and time ⭐
+  notes.push({ content: content, id: numberID, date: date });
+
+  return `Your note: "${content}" has been saved with the ID: ${numberID}! 🗒️🖋️`;
 }
 
 document.getElementById("addNoteButton").addEventListener("click", () => {
   const notesContent = document.getElementById("notesContent").value;
-  const notesId = Number(document.getElementById("notesId").value);
+  const notesId = document.getElementById("notesId").value;
   const message = saveNote(notesContent, notesId);
 
   document.getElementById("saveResult").innerHTML = `<p>${message}</p>`;
 
-  console.log(message);
+  document.getElementById("notesContent").value = "";
+  document.getElementById("notesId").value = "";
+
   console.log(notes);
 });
 
@@ -26,18 +44,16 @@ function getNote(id) {
   const numberID = Number(id);
 
   if (isNaN(numberID) || numberID <= 0) {
-    console.log("Error: You must enter a valid ID.");
-    return "Please enter a valid ID.";
+    alert("Please enter a valid ID");
+    return "Error: Invalid ID";
   }
 
-  for (let i = 0; i < notes.length; i++) {
-    if (notes[i].id === numberID) {
-      console.log(notes[i]);
-      return notes[i];
-    }
+  const existingNote = notes.find((note) => note.id === numberID);
+
+  if (existingNote) {
+    return existingNote;
   }
 
-  console.log(`No note found with ID: ${numberID}.`);
   return `No note found with ID: ${numberID}. Please try again.`;
 }
 
@@ -49,10 +65,8 @@ document.getElementById("findNoteButton").addEventListener("click", () => {
     document.getElementById(
       "findResult"
     ).innerHTML = `<p>Congratulations! We found your note with ID: ${foundMessage.id}! It has the following content: "${foundMessage.content}" 📄</p>`;
-    console.log(`Found note:`, foundMessage);
   } else {
     document.getElementById("findResult").innerHTML = `<p>${foundMessage}</p>`;
-    console.log(foundMessage);
   }
 });
 
@@ -64,19 +78,17 @@ function logOutNotesFormatted() {
 
   if (notes.length === 0) {
     allNotes.innerHTML = `<p>No notes available. Please add some notes first.</p>`;
-    console.log("No notes available. Please add some notes first.");
     return;
   }
 
-  for (let i = 0; i < notes.length; i++) {
-    const notesText = `The note with id: ${notes[i].id}, saved on ${notes[
-      i
-    ].date.toLocaleString()},has the following note text: "${
-      notes[i].content
+  notes.forEach((note) => {
+    const notesText = `The note with ID: ${
+      note.id
+    }, saved on ${note.date.toLocaleString()}, has the following content: "${
+      note.content
     }".`;
-    console.log(notesText);
     allNotes.innerHTML += `<p>${notesText}</p>`;
-  }
+  });
 }
 
 document.getElementById("logNotesButton").addEventListener("click", () => {
