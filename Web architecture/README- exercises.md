@@ -49,3 +49,49 @@
 **Content-Type_Response:** None
 **Body_Response:** None
 **Status-Codes:** 204 No Content // 404 Not Found // 500 Internal Server Error
+
+# Sequence diagram
+
+## Create flow
+
+**User → Frontend → Backend → Database**
+**User** clicks "Add" button
+**Frontend** sends POST with data (to-do list or todo item)
+**Backend** executes create in Database
+**Database** returns created record (id)
+**Backend** sends success response (201) to Frontend
+**Frontend** updates the page
+**User** is able to see the new list or item
+
+## Read flow
+
+**User → Frontend → Backend → Database**
+**User** opens website
+**Frontend** sends GET with data (to-do list or todo item)
+**Backend** executes read in Database
+**Database** returns list of todos
+**Backend** returns list to Frontend
+**Frontend** renders the list on the page
+**User** is able to see the existing list
+
+## Update flow
+
+**User → Frontend → Backend → Database**
+**User** clicks checkbox
+**Frontend** sends PATCH(id) with updated data
+**Backend** executes update in Database
+**Database** returns updated record (id)
+**Backend** sends success response (200) to Frontend
+**Frontend** updates the list on the page
+**User** is able to see the updated item
+
+## Delete flow
+
+**User → Frontend → Backend → Database**
+**User** clicks "Delete" button
+**Frontend** sends DELETE(id)
+**Backend** executes delete in Database
+**Database** returns rows affected
+**Backend** sends response (204: No Content or 200: with info) to Frontend
+**Frontend** removes item from the page
+**User** is not able to see the deleted item
