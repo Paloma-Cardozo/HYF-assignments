@@ -360,7 +360,8 @@
 			},
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": "https://dog.ceo/api/breed/poodle/list"
 			},
 			"response": [
 				{
@@ -478,7 +479,8 @@
 			},
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": "https://dog.ceo/api/breed/poodle/toy/images"
 			},
 			"response": [
 				{
