@@ -50,8 +50,12 @@ app.get("/task", async (request, response) => {
 });
 
 app.get("/all-users", async (request, response) => {
-  const allUsers = await knex2.raw("SELECT * FROM users ORDER BY id ASC");
-  response.send(allUsers);
+  try {
+    const allUsers = await knex2.raw("SELECT * FROM users ORDER BY id ASC");
+    response.send(allUsers);
+  } catch (error) {
+    response.status(500).send({ error: "Database error" });
+  }
 });
 
 app.get("/unconfirmed-users", async (request, response) => {
@@ -77,7 +81,7 @@ app.get("/2022-users", async (request, response) => {
 
 app.get("/users-count", async (request, response) => {
   try {
-    const usersCount = await knex2.raw("SELECT COUNT(*) AS [count] FROM users");
+    const usersCount = await knex2.raw("SELECT COUNT(*) AS count FROM users");
     response.send(usersCount[0]);
   } catch (error) {
     response.status(500).send({ error: "Database error" });

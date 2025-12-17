@@ -1,3 +1,12 @@
+:root {
+  --primary: #4f46e5;
+  --secondary: #7c3aed;
+  --background: #f8fafc;
+  --text: #383d44;
+  --principal: #fff;
+  --border: #cacdd1;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -5,40 +14,85 @@
 }
 
 body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background: #667eea;
-  padding: 25px;
+  font-family: "Inter", system-ui, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .title {
-  color: rgb(255, 255, 255);
-  text-align: center;
-  font-size: 2.5em;
+  color: var(--principal);
+  font-size: 3em;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .subtitle {
-  color: rgba(236, 235, 235, 0.9);
-  text-align: center;
-  font-size: 1.1em;
+  color: var(--principal);
+  font-size: 1.8em;
+  margin: 20px;
 }
 
 .user-card {
-  background: rgb(255, 255, 255);
-  border-radius: 15px;
-  padding: 40px;
-  text-align: center;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  margin: 20px auto;
+  background: var(--principal);
+  padding: 25px;
+  border-radius: 24px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  margin-top: 40px;
 }
 
 .user-card-title {
-  color: rgb(102, 126, 234);
   font-size: 1.5em;
+  color: var(--primary);
 }
 
 .user-count {
-  color: rgb(117, 74, 161);
-  font-size: 3em;
+  color: var(--secondary);
+  font-size: 4em;
   font-weight: bold;
+  text-align: center;
+}
+
+.all-users {
+  background: var(--principal);
+  width: 100%;
+  max-width: 600px;
+  border-radius: 24px;
+  padding: 30px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+}
+
+.users-list {
+  list-style: none;
+}
+
+.user-list-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  border-bottom: 1px solid var(--border);
+  transition: transform 0.2s;
+}
+
+.user-list-item:last-child {
+  border-bottom: none;
+}
+
+.user-list-item:hover {
+  transform: scale(1.02);
+}
+
+.user-name {
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.user-email {
+  color: var(--text);
+  font-size: 0.9rem;
 }
