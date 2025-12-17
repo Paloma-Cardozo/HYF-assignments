@@ -246,7 +246,8 @@
 			},
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": "https://dog.ceo/api/breed/beagle/images/random/3"
 			},
 			"response": [
 				{
