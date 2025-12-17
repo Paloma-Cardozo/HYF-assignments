@@ -1,0 +1,17 @@
+{
+  "name": "intro-backend",
+  "version": "1.0.0",
+  "description": "Introductory backend project using Node.js and Express",
+  "license": "MIT",
+  "author": "Paloma Cardozo",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"No tests yet\""
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
