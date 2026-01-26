@@ -1,20 +1,24 @@
 const artyom = new Artyom();
 
-let savedName = "";
-let todoList = [];
-let activeTimers = [];
+const user = { savedName: "", todoList: [], activeTimers: [] };
 
 function respond(text) {
   const output = document.getElementById("output");
   if (output) output.textContent = text;
   try {
     artyom.say(text);
-  } catch (e) {}
+  } catch (error) {
+    console.error("Text-to-speech failed:", error);
+    if (output) {
+      output.textContent =
+        "I can display the response, but I am unable to speak right now.";
+    }
+  }
   return text;
 }
 
 function getReply(command) {
-  if (!command || typeof command !== "string") {
+  if (typeof command !== "string" || !command.trim()) {
     return respond("I didn't get a command");
   }
 
@@ -28,39 +32,63 @@ function getReply(command) {
   const nameMatch = text.match(/^my name is (.+)$/i);
   if (nameMatch) {
     const given = nameMatch[1].trim();
-    const capitalized = given.charAt(0).toUpperCase() + given.slice(1);
+    const normalizedName = given.toLowerCase();
 
-    if (savedName.toLowerCase() === capitalized.toLowerCase()) {
+    if (user.savedName === normalizedName) {
       return respond("I already know your name");
     }
 
-    savedName = capitalized;
-    return respond(`Nice to meet you ${capitalized}`);
+    user.savedName = normalizedName;
+    const displayName =
+      normalizedName.charAt(0).toUpperCase() + normalizedName.slice(1);
+
+    return respond(`Nice to meet you ${displayName}`);
   }
 
   if (text === "what is my name") {
-    if (savedName) {
-      return respond(`Your name is ${savedName}`);
+    if (user.savedName) {
+      const displayName =
+        user.savedName.charAt(0).toUpperCase() + user.savedName.slice(1);
+
+      return respond(`Your name is ${displayName}`);
     }
 
     return respond("I don't know your name yet");
   }
 
-  const addMatch = text.match(/^add (.+) to my todo$/i);
-  if (addMatch) {
-    const item = addMatch[1].trim();
-    todoList.push(item);
+  if (text.startsWith("add ") && text.endsWith(" to my todo")) {
+    const item = text.replace("add ", "").replace(" to my todo", "").trim();
+
+    if (!item) {
+      return respond("What do you want to add to your todo?");
+    }
+
+    user.todoList.push(item);
     return respond(`${item} added to your todo`);
   }
 
-  const removeMatch = text.match(/^remove (.+) from my todo$/i);
-  if (removeMatch) {
-    const item = removeMatch[1].trim();
-    const index = todoList.findIndex(
-      (t) => t.toLowerCase() === item.toLowerCase()
-    );
-    if (index >= 0) {
-      todoList.splice(index, 1);
+  if (text.startsWith("remove ") && text.endsWith(" from my todo")) {
+    const item = text
+      .replace("remove ", "")
+      .replace(" from my todo", "")
+      .trim();
+
+    if (!item) {
+      return respond("What do you want to remove from your todo?");
+    }
+
+    const itemLower = item.toLowerCase();
+    let removed = false;
+
+    for (let i = 0; i < user.todoList.length; i++) {
+      if (user.todoList[i].toLowerCase() === itemLower) {
+        user.todoList.splice(i, 1);
+        removed = true;
+        break;
+      }
+    }
+
+    if (removed) {
       return respond(`Removed ${item} from your todo`);
     }
 
@@ -68,11 +96,11 @@ function getReply(command) {
   }
 
   if (text === "what is on my todo") {
-    if (todoList.length === 0) {
+    if (user.todoList.length === 0) {
       return respond("You have no todos");
     }
     return respond(
-      `You have ${todoList.length} todos: ${todoList.slice(0).join(", ")}`
+      `You have ${user.todoList.length} todos: ${user.todoList.join(", ")}`,
     );
   }
 
@@ -87,36 +115,67 @@ function getReply(command) {
   const mathMatch = text.match(/^what is (.+)$/i);
   if (mathMatch) {
     const expr = mathMatch[1].trim();
-    if (/^[0-9+\-*/().\s%]+$/.test(expr)) {
-      try {
-        const result = Function(`return (${expr})`)();
-        return respond(String(result));
-      } catch (e) {
-        return respond("I couldn't calculate that expression");
-      }
+    const parts = expr.split(" ");
+
+    if (parts.length !== 3) {
+      return respond("Please use format: number operator number");
     }
+
+    const left = Number(parts[0]);
+    const operator = parts[1];
+    const right = Number(parts[2]);
+
+    if (Number.isNaN(left) || Number.isNaN(right)) {
+      return respond("Invalid numbers");
+    }
+
+    let result;
+
+    switch (operator) {
+      case "+":
+        result = left + right;
+        break;
+      case "-":
+        result = left - right;
+        break;
+      case "*":
+        result = left * right;
+        break;
+      case "/":
+        if (right === 0) {
+          return respond("Division by zero is not allowed");
+        }
+        result = left / right;
+        break;
+      default:
+        return respond("Unsupported operator");
+    }
+
+    return respond(String(result));
   }
 
   const timerMatch = text.match(
-    /^set a timer for (\d+)\s*(minutes|minute|seconds|second)?$/i
+    /^set a timer for (\d+)\s*(minutes|minute|seconds|second)?$/i,
   );
   if (timerMatch) {
     const amount = parseInt(timerMatch[1], 10);
     const unit = (timerMatch[2] || "minutes").toLowerCase();
 
     let ms = 0;
+
     if (unit.startsWith("second")) {
       ms = amount * 1000;
+    } else {
+      ms = amount * 60 * 1000;
     }
-    ms = amount * 60 * 1000;
 
     const timerId = setTimeout(() => {
       respond("Timer done");
-      const i = activeTimers.indexOf(timerId);
-      if (i >= 0) activeTimers.splice(i, 1);
+      const i = user.activeTimers.indexOf(timerId);
+      if (i >= 0) user.activeTimers.splice(i, 1);
     }, ms);
 
-    activeTimers.push(timerId);
+    user.activeTimers.push(timerId);
     return respond(`Timer set for ${amount} ${unit}`);
   }
 
