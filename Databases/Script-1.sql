@@ -1,6 +1,6 @@
 PRAGMA foreign_keys = ON;
 
-CREATE TABLE user (
+CREATE TABLE users (
   id INTEGER PRIMARY KEY,
   name varchar(255) NOT NULL,
   email varchar(255) NOT NULL,
@@ -20,9 +20,9 @@ CREATE TABLE task (
   updated DATETIME NOT NULL,
   due_date DATETIME NULL DEFAULT NULL,
   status_id INTEGER NOT NULL,
-  user_id INTEGER,
+  users_id INTEGER,
   CONSTRAINT fk_status FOREIGN KEY (status_id) REFERENCES status (id) ON DELETE CASCADE,
-  CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE CASCADE
+  CONSTRAINT fk_users FOREIGN KEY (users_id) REFERENCES users (id) ON DELETE CASCADE
 );
 
 CREATE TABLE tag (
@@ -38,7 +38,7 @@ CREATE TABLE task_tag (
   CONSTRAINT fk_task_tag_tag FOREIGN KEY (tag_id) REFERENCES tag (id) ON DELETE CASCADE
 );
 
-INSERT INTO user (id, name, email, phone) VALUES
+INSERT INTO users (id, name, email, phone) VALUES
 (1, 'Aarika Ellingworth', 'aellingworth0@harvard.edu', '483-396-8795'),
 (2, 'Pren Goldsworthy', 'pgoldsworthy1@spotify.com', '635-572-8467'),
 (3, 'Pablo Kisbee', 'pkisbee2@lulu.com', '790-962-8683'),
@@ -64,7 +64,7 @@ INSERT INTO tag (id, name) VALUES
 (4, 'Home'),
 (5, 'Shopping');
 
-INSERT INTO task (id, title, description, created, updated, due_date, status_id, user_id) VALUES
+INSERT INTO task (id, title, description, created, updated, due_date, status_id, users_id) VALUES
 (1, 'Wash clothes', 'Title says it all.', '2017-10-25 06:54:16', '2017-10-15 13:05:09', NULL, 2, 1),
 (2, 'Become a billionaire', 'This should not take long, just invent a time machine, travel back to 2010 and buy bitcoin', '2017-09-26 03:06:46', '2017-10-08 06:14:31', '2017-12-22 20:58:03', 3, 6),
 (3, 'Plan meeting with London office', 'We will probably use skype', '2017-10-04 18:07:37', '2017-10-14 16:01:31', '2017-12-05 19:42:15', 2, 8),
@@ -116,29 +116,29 @@ INSERT INTO task_tag (task_id, tag_id) VALUES
 (23, 2);
 
 -- List the names and phones of all of the users.
-SELECT name, phone FROM user;
+SELECT name, phone FROM users;
 
 -- List all of the users, ordering them by name alphabetically.
-SELECT * FROM user ORDER BY name;
-
+SELECT * FROM users ORDER BY name;
+ 
 -- Find the name of the user of id 10.
-SELECT * FROM user WHERE ID = '10';
+SELECT * FROM users WHERE ID = 10;
 
 -- Find 3 oldest (by create date) tasks.
 SELECT * FROM task ORDER BY created ASC LIMIT 3;
 
 SELECT * FROM task;
-INSERT INTO task (title, description, created, updated, due_date, status_id, user_id)
+INSERT INTO task (title, description, created, updated, due_date, status_id, users_id)
 VALUES ('Prepare presentation', 'Create slides for the team meeting', DATETIME('now'), DATETIME('now'), null, 2, 1);
 SELECT * FROM task ORDER BY id DESC LIMIT 1;
 UPDATE task SET status_id = 2 WHERE title = 'Prepare presentation';
 SELECT * FROM task WHERE title = 'Prepare presentation';
 
 -- Add yourself as a new user in the user table
-INSERT INTO user (name, email, phone) VALUES ('Paloma Cardozo', 'palomacardozo88@gmail.com', '91955723');
+INSERT INTO users (name, email, phone) VALUES ('Paloma Cardozo', 'palomacardozo88@gmail.com', '91955723');
 
 -- Create 2 or more tasks assigned to yourself
-INSERT INTO task (id, title, description, created, updated, due_date, status_id, user_id) VALUES
+INSERT INTO task (id, title, description, created, updated, due_date, status_id, users_id) VALUES
 (37, 'Finish SQLite exercises', 'Practice SELECT, JOIN, and GROUP BY queries in DBeaver', DATETIME('now'), DATETIME('now'), '2025-12-14 12:00:00', 2, 13),
 (38, 'Plan weekly meals', 'Prepare a list of recipes for the next 7 days', DATETIME('now'), DATETIME('now'), '2025-12-14 20:00:00', 1, 13),
 (39, 'Prepare final REDI project', 'Review dataset, visuals and Power BI dashboard before presentation', DATETIME('now'), DATETIME('now'), '2025-12-10 17:00:00', 2, 13),
@@ -146,15 +146,15 @@ INSERT INTO task (id, title, description, created, updated, due_date, status_id,
 (41, 'Do Christmas shopping', 'Make a list of gifts and find online offers before the holidays', DATETIME('now'), DATETIME('now'), '2025-12-14 21:00:00', 1, 13);
 
 -- Update the task you just created to change its status to "In Progress" (status_id = 2)
-UPDATE task SET status_id = 2 WHERE id = '41';
+UPDATE task SET status_id = 2 WHERE ID = 41;
 
 -- Retrieve only the title and description of all tasks assigned to you
-SELECT title, description FROM task WHERE user_id = '13';
-
+SELECT title, description FROM task WHERE users_id = 13;
+ 
 -- Delete a task that you no longer need
 DELETE FROM task WHERE title = 'Write study summaries by hand';
 
-INSERT INTO task (id, title, description, created, updated, due_date, status_id, user_id) VALUES 
+INSERT INTO task (id, title, description, created, updated, due_date, status_id, users_id) VALUES 
 (40, 'Write study summaries by hand', 'Summarize main topics from classes and readings in my notebook', DATETIME('now'), DATETIME('now'), '2025-12-14 12:00:00', 2, 13);
 
 -- How many tasks are in the task table?
@@ -164,10 +164,10 @@ SELECT COUNT(*) FROM task;
 SELECT COUNT(*) FROM task WHERE due_date IS NULL;
 
 -- Find all the tasks that are marked as done.
-SELECT * FROM task WHERE status_id = '3';
+SELECT * FROM task WHERE status_id = 3;
 
 -- Find all the tasks that are not marked as done.
-SELECT * FROM task WHERE status_id IS NOT '3';
+SELECT * FROM task WHERE status_id IS NOT 3;
 
 -- Get all the tasks, sorted with the most recently created first.
 SELECT * FROM task ORDER BY created DESC;
