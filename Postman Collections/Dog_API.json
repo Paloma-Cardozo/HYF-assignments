@@ -1,0 +1,595 @@
+{
+	"info": {
+		"_postman_id": "7f02bdcf-3d2a-43e3-ba1c-cb06f0c28d8e",
+		"name": "Dog API Assignment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Random dogs",
+			"id": "37cc937b-fbba-424b-b446-a675446bf115",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "https://dog.ceo/api/breeds/image/random/5"
+			},
+			"response": [
+				{
+					"id": "9b55e9f4-b3cd-4795-b64e-c5af097d1ab5",
+					"name": "5 dog images",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": "https://dog.ceo/api/breeds/image/random/5"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 17 Dec 2025 20:41:02 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "207"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Server",
+							"value": "cloudflare"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.3.28"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 varnish (Varnish/6.3), 1.1 varnish (Varnish/6.3)"
+						},
+						{
+							"key": "X-Cache-Hits",
+							"value": "0"
+						},
+						{
+							"key": "X-Cache",
+							"value": "MISS"
+						},
+						{
+							"key": "Accept-Ranges",
+							"value": "bytes"
+						},
+						{
+							"key": "Age",
+							"value": "0"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Nel",
+							"value": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+						},
+						{
+							"key": "cf-cache-status",
+							"value": "DYNAMIC"
+						},
+						{
+							"key": "Speculation-Rules",
+							"value": "\"/cdn-cgi/speculation\""
+						},
+						{
+							"key": "Report-To",
+							"value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=AGEBM6YucVQ%2B2kSxrhFs2vQn%2FuiLkZxoR06eljyz6xrE6rIZOC46cjNZn3afSa9X49KwkbWj95ZFUnoBb%2FiKj%2BJFoMpw\"}]}"
+						},
+						{
+							"key": "CF-RAY",
+							"value": "9af93d2cf99c7da8-CPH"
+						},
+						{
+							"key": "alt-svc",
+							"value": "h3=\":443\"; ma=86400"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "{\n    \"message\": [\n        \"https://images.dog.ceo/breeds/elkhound-norwegian/n02091467_3403.jpg\",\n        \"https://images.dog.ceo/breeds/mastiff-tibetan/n02108551_13756.jpg\",\n        \"https://images.dog.ceo/breeds/mountain-bernese/n02107683_4347.jpg\",\n        \"https://images.dog.ceo/breeds/samoyed/n02111889_4381.jpg\",\n        \"https://images.dog.ceo/breeds/terrier-westhighland/n02098286_3218.jpg\"\n    ],\n    \"status\": \"success\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Dog breeds",
+			"id": "d3e862a9-81e5-4a69-85de-dfe0600c5922",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": [
+				{
+					"id": "0a3cc7ac-af1b-4029-8f8e-5ae5d59355b4",
+					"name": "All the dog breeds",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": "https://dog.ceo/api/breeds/list/all"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 17 Dec 2025 20:44:26 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1057"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Server",
+							"value": "cloudflare"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.3.28"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 varnish (Varnish/6.3), 1.1 varnish (Varnish/6.3)"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=1800"
+						},
+						{
+							"key": "X-Cache-Age",
+							"value": "5522"
+						},
+						{
+							"key": "X-Cache-Hits",
+							"value": "1911"
+						},
+						{
+							"key": "X-Cache",
+							"value": "HIT"
+						},
+						{
+							"key": "Accept-Ranges",
+							"value": "bytes"
+						},
+						{
+							"key": "Age",
+							"value": "0"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Nel",
+							"value": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+						},
+						{
+							"key": "cf-cache-status",
+							"value": "DYNAMIC"
+						},
+						{
+							"key": "Speculation-Rules",
+							"value": "\"/cdn-cgi/speculation\""
+						},
+						{
+							"key": "Report-To",
+							"value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=z07ghBH00X01yld8r1zfJQH%2Fvrnn%2Fd7wnanteGgbvG%2F3pNEiy8pWWf4Nk0sldjDKfbOR102qIZEV%2Fh1NRx1ZYAdIw3za\"}]}"
+						},
+						{
+							"key": "CF-RAY",
+							"value": "9af9422b1bdabe47-CPH"
+						},
+						{
+							"key": "alt-svc",
+							"value": "h3=\":443\"; ma=86400"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "{\n    \"message\": {\n        \"affenpinscher\": [],\n        \"african\": [\n            \"wild\"\n        ],\n        \"airedale\": [],\n        \"akita\": [],\n        \"appenzeller\": [],\n        \"australian\": [\n            \"kelpie\",\n            \"shepherd\"\n        ],\n        \"bakharwal\": [\n            \"indian\"\n        ],\n        \"basenji\": [],\n        \"beagle\": [],\n        \"bluetick\": [],\n        \"borzoi\": [],\n        \"bouvier\": [],\n        \"boxer\": [],\n        \"brabancon\": [],\n        \"briard\": [],\n        \"buhund\": [\n            \"norwegian\"\n        ],\n        \"bulldog\": [\n            \"boston\",\n            \"english\",\n            \"french\"\n        ],\n        \"bullterrier\": [\n            \"staffordshire\"\n        ],\n        \"cattledog\": [\n            \"australian\"\n        ],\n        \"cavapoo\": [],\n        \"chihuahua\": [],\n        \"chippiparai\": [\n            \"indian\"\n        ],\n        \"chow\": [],\n        \"clumber\": [],\n        \"cockapoo\": [],\n        \"collie\": [\n            \"border\"\n        ],\n        \"coonhound\": [],\n        \"corgi\": [\n            \"cardigan\"\n        ],\n        \"cotondetulear\": [],\n        \"dachshund\": [],\n        \"dalmatian\": [],\n        \"dane\": [\n            \"great\"\n        ],\n        \"danish\": [\n            \"swedish\"\n        ],\n        \"deerhound\": [\n            \"scottish\"\n        ],\n        \"dhole\": [],\n        \"dingo\": [],\n        \"doberman\": [],\n        \"elkhound\": [\n            \"norwegian\"\n        ],\n        \"entlebucher\": [],\n        \"eskimo\": [],\n        \"finnish\": [\n            \"lapphund\"\n        ],\n        \"frise\": [\n            \"bichon\"\n        ],\n        \"gaddi\": [\n            \"indian\"\n        ],\n        \"german\": [\n            \"shepherd\"\n        ],\n        \"greyhound\": [\n            \"indian\",\n            \"italian\"\n        ],\n        \"groenendael\": [],\n        \"havanese\": [],\n        \"hound\": [\n            \"afghan\",\n            \"basset\",\n            \"blood\",\n            \"english\",\n            \"ibizan\",\n            \"plott\",\n            \"walker\"\n        ],\n        \"husky\": [],\n        \"keeshond\": [],\n        \"kelpie\": [],\n        \"kombai\": [],\n        \"komondor\": [],\n        \"kuvasz\": [],\n        \"labradoodle\": [],\n        \"labrador\": [],\n        \"leonberg\": [],\n        \"lhasa\": [],\n        \"malamute\": [],\n        \"malinois\": [],\n        \"maltese\": [],\n        \"mastiff\": [\n            \"bull\",\n            \"english\",\n            \"indian\",\n            \"tibetan\"\n        ],\n        \"mexicanhairless\": [],\n        \"mix\": [],\n        \"mountain\": [\n            \"bernese\",\n            \"swiss\"\n        ],\n        \"mudhol\": [\n            \"indian\"\n        ],\n        \"newfoundland\": [],\n        \"otterhound\": [],\n        \"ovcharka\": [\n            \"caucasian\"\n        ],\n        \"papillon\": [],\n        \"pariah\": [\n            \"indian\"\n        ],\n        \"pekinese\": [],\n        \"pembroke\": [],\n        \"pinscher\": [\n            \"miniature\"\n        ],\n        \"pitbull\": [],\n        \"pointer\": [\n            \"german\",\n            \"germanlonghair\"\n        ],\n        \"pomeranian\": [],\n        \"poodle\": [\n            \"medium\",\n            \"miniature\",\n            \"standard\",\n            \"toy\"\n        ],\n        \"pug\": [],\n        \"puggle\": [],\n        \"pyrenees\": [],\n        \"rajapalayam\": [\n            \"indian\"\n        ],\n        \"redbone\": [],\n        \"retriever\": [\n            \"chesapeake\",\n            \"curly\",\n            \"flatcoated\",\n            \"golden\"\n        ],\n        \"ridgeback\": [\n            \"rhodesian\"\n        ],\n        \"rottweiler\": [],\n        \"rough\": [\n            \"collie\"\n        ],\n        \"saluki\": [],\n        \"samoyed\": [],\n        \"schipperke\": [],\n        \"schnauzer\": [\n            \"giant\",\n            \"miniature\"\n        ],\n        \"segugio\": [\n            \"italian\"\n        ],\n        \"setter\": [\n            \"english\",\n            \"gordon\",\n            \"irish\"\n        ],\n        \"sharpei\": [],\n        \"sheepdog\": [\n            \"english\",\n            \"indian\",\n            \"shetland\"\n        ],\n        \"shiba\": [],\n        \"shihtzu\": [],\n        \"spaniel\": [\n            \"blenheim\",\n            \"brittany\",\n            \"cocker\",\n            \"irish\",\n            \"japanese\",\n            \"sussex\",\n            \"welsh\"\n        ],\n        \"spitz\": [\n            \"indian\",\n            \"japanese\"\n        ],\n        \"springer\": [\n            \"english\"\n        ],\n        \"stbernard\": [],\n        \"terrier\": [\n            \"american\",\n            \"andalusian\",\n            \"australian\",\n            \"bedlington\",\n            \"border\",\n            \"boston\",\n            \"cairn\",\n            \"dandie\",\n            \"fox\",\n            \"irish\",\n            \"kerryblue\",\n            \"lakeland\",\n            \"norfolk\",\n            \"norwich\",\n            \"patterdale\",\n            \"russell\",\n            \"scottish\",\n            \"sealyham\",\n            \"silky\",\n            \"tibetan\",\n            \"toy\",\n            \"welsh\",\n            \"westhighland\",\n            \"wheaten\",\n            \"yorkshire\"\n        ],\n        \"tervuren\": [],\n        \"vizsla\": [],\n        \"waterdog\": [\n            \"spanish\"\n        ],\n        \"weimaraner\": [],\n        \"whippet\": [],\n        \"wolfhound\": [\n            \"irish\"\n        ]\n    },\n    \"status\": \"success\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Dogs from the \"beagle\" breed",
+			"id": "1b4abbb6-1e31-45bb-9fca-04590ea3c8c2",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "https://dog.ceo/api/breed/beagle/images/random/3"
+			},
+			"response": [
+				{
+					"id": "8fa87c5a-9478-4455-859c-8f9ce104352c",
+					"name": "3  \"beagle\" images",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": "https://dog.ceo/api/breed/beagle/images/random/3"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 17 Dec 2025 20:47:24 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "127"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Server",
+							"value": "cloudflare"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.3.28"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 varnish (Varnish/6.3), 1.1 varnish (Varnish/6.3)"
+						},
+						{
+							"key": "X-Cache-Hits",
+							"value": "0"
+						},
+						{
+							"key": "X-Cache",
+							"value": "MISS"
+						},
+						{
+							"key": "Accept-Ranges",
+							"value": "bytes"
+						},
+						{
+							"key": "Age",
+							"value": "0"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Nel",
+							"value": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+						},
+						{
+							"key": "cf-cache-status",
+							"value": "DYNAMIC"
+						},
+						{
+							"key": "Speculation-Rules",
+							"value": "\"/cdn-cgi/speculation\""
+						},
+						{
+							"key": "Report-To",
+							"value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=qvS%2F5Neh1lNEpsckwPmTcTO%2F5KH9ooZyiEtSJkU3U0FhGWS1XQ6JkRqnnSHi76DkXrjlKkiCS6r3oH%2BzetJppsNj9iy2\"}]}"
+						},
+						{
+							"key": "CF-RAY",
+							"value": "9af946827d001255-CPH"
+						},
+						{
+							"key": "alt-svc",
+							"value": "h3=\":443\"; ma=86400"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "{\n    \"message\": [\n        \"https://images.dog.ceo/breeds/beagle/n02088364_10362.jpg\",\n        \"https://images.dog.ceo/breeds/beagle/n02088364_5282.jpg\",\n        \"https://images.dog.ceo/breeds/beagle/n02088364_9318.jpg\"\n    ],\n    \"status\": \"success\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Sub-breeds of the poodle",
+			"id": "eaec1fd4-5259-4b0d-b81b-7a1e7ce87fa9",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "https://dog.ceo/api/breed/poodle/list"
+			},
+			"response": [
+				{
+					"id": "b6977fae-85a8-45cc-97db-bdcec2f2907c",
+					"name": "All the sub-breeds of the poodle",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": "https://dog.ceo/api/breed/poodle/list"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 17 Dec 2025 20:50:30 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "82"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Server",
+							"value": "cloudflare"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.3.28"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 varnish (Varnish/6.3), 1.1 varnish (Varnish/6.3)"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=1800"
+						},
+						{
+							"key": "X-Cache-Age",
+							"value": "4991"
+						},
+						{
+							"key": "X-Cache-Hits",
+							"value": "2"
+						},
+						{
+							"key": "X-Cache",
+							"value": "HIT"
+						},
+						{
+							"key": "Accept-Ranges",
+							"value": "bytes"
+						},
+						{
+							"key": "Age",
+							"value": "0"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Nel",
+							"value": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+						},
+						{
+							"key": "cf-cache-status",
+							"value": "DYNAMIC"
+						},
+						{
+							"key": "Speculation-Rules",
+							"value": "\"/cdn-cgi/speculation\""
+						},
+						{
+							"key": "Report-To",
+							"value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=Px31abtb98BfR7LfUCayaPdNAq9P5U7eYKSRqcJrl6O2Qwb1jbKkUQgE3gvN7dea5d2%2FLznbTGgVQ3KzG27o0xi34JMC\"}]}"
+						},
+						{
+							"key": "CF-RAY",
+							"value": "9af94b0f3b12abcf-CPH"
+						},
+						{
+							"key": "alt-svc",
+							"value": "h3=\":443\"; ma=86400"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "{\n    \"message\": [\n        \"medium\",\n        \"miniature\",\n        \"standard\",\n        \"toy\"\n    ],\n    \"status\": \"success\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Dogs from the \"toy poodle\" sub-breed",
+			"id": "a35badf8-360e-49c1-81d9-a0968c3e520e",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "https://dog.ceo/api/breed/poodle/toy/images"
+			},
+			"response": [
+				{
+					"id": "31a771f0-c316-40a1-8da4-b956d2d7d2af",
+					"name": "All the dog images from the \"toy poodle\" sub-breed",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": "https://dog.ceo/api/breed/poodle/toy/images"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 17 Dec 2025 20:54:33 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "624"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Server",
+							"value": "cloudflare"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.3.28"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 varnish (Varnish/6.3), 1.1 varnish (Varnish/6.3)"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=1800"
+						},
+						{
+							"key": "X-Cache-Age",
+							"value": "18606"
+						},
+						{
+							"key": "X-Cache-Hits",
+							"value": "6"
+						},
+						{
+							"key": "X-Cache",
+							"value": "HIT"
+						},
+						{
+							"key": "Accept-Ranges",
+							"value": "bytes"
+						},
+						{
+							"key": "Age",
+							"value": "0"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Nel",
+							"value": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+						},
+						{
+							"key": "cf-cache-status",
+							"value": "DYNAMIC"
+						},
+						{
+							"key": "Speculation-Rules",
+							"value": "\"/cdn-cgi/speculation\""
+						},
+						{
+							"key": "Report-To",
+							"value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=DDtkvOlm1DxFKhO6NKlrqeAOQNifQppCrz%2B9lMTxaxjM078UQRCWOg%2F9Tl8dTV0SNB0eo%2B5ct%2BlNg48Cv7QWchdO7U2b\"}]}"
+						},
+						{
+							"key": "CF-RAY",
+							"value": "9af950fb3d74e034-CPH"
+						},
+						{
+							"key": "alt-svc",
+							"value": "h3=\":443\"; ma=86400"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "{\n    \"message\": [\n        \"https://images.dog.ceo/breeds/poodle-toy/Cookie.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/boogie.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/boogie2.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/boogie_with_snow.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/koro.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_1008.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_10203.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_1023.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_1050.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_1063.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_1077.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_1178.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_1220.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_1293.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_1302.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_1461.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_1559.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_1576.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_1582.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_1596.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_1606.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_166.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_1756.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_1785.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_1801.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_1832.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_1844.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_189.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_1929.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_2019.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_213.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_2224.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_223.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_2240.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_2242.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_2244.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_2258.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_2270.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_2305.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_2308.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_2311.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_239.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_2427.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_2508.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_2521.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_253.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_2595.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_2609.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_2639.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_265.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_2727.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_274.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_2784.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_2785.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_2816.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_288.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_2883.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_2905.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_2908.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_2934.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_300.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_3061.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_3093.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_3103.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_3159.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_3165.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_3297.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_333.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_3341.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_3460.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_3462.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_35.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_3517.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_3624.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_3639.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_3714.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_3796.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_3808.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_3864.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_3887.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_3960.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_4045.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_4087.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_4112.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_4221.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_429.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_454.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_4589.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_479.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_5278.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_528.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_530.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_5367.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_5386.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_5442.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_5459.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_5523.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_5659.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_5723.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_6060.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_619.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_6230.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_6248.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_629.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_6456.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_6587.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_665.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_6652.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_6683.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_6684.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_681.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_6813.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_6868.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_6921.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_70.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_7102.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_720.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_7448.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_7504.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_764.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_7888.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_7964.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_7986.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_7997.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_8304.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_836.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_8444.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_8880.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_8890.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_8936.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_8943.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_8951.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_8963.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_9199.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_9229.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_942.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_952.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_9550.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_9574.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_9828.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/n02113624_983.jpg\",\n        \"https://images.dog.ceo/breeds/poodle-toy/smiling_boogie.jpg\"\n    ],\n    \"status\": \"success\"\n}"
+				}
+			]
+		}
+	]
+}
