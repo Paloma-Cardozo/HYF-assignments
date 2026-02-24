@@ -1,5 +1,8 @@
 Broccoli
 Carrot
 Corn
+Potato
 Onion
 Cucumber
+Spinach
+Tomato
