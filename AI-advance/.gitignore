@@ -1,0 +1,2 @@
+# Exclude personal documents containing sensitive data (phone, address, email)
+*.pdf
