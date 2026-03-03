@@ -1,8 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
 
+/* === VARIABLES === */
 :root {
   --background-color: #fefefe;
-  --title-color: #ffffff;
+  --surface-color: #ffffff;
   --text-color: #1a1a1a;
   --border-color: #ececec;
   --accent-color: #5a427c;
@@ -13,12 +14,14 @@
   --radius: 12px;
 }
 
+/* === RESET === */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+/* === BASE === */
 html,
 body {
   background-color: var(--background-color);
@@ -27,6 +30,7 @@ body {
   line-height: 1.7;
 }
 
+/* === HEADER === */
 header {
   background: linear-gradient(180deg, #fafafa 0%, #fff 100%);
   padding: 5rem 1rem 3rem;
@@ -64,12 +68,14 @@ header {
   color: var(--accent-light);
 }
 
+/* === LAYOUT === */
 main {
   max-width: var(--max-width);
   margin: 3rem auto;
   padding: 0 1.5rem;
 }
 
+/* === COMPONENTS === */
 .section-title {
   font-size: 1.4rem;
   font-weight: 600;
@@ -90,7 +96,7 @@ ul {
 }
 
 .item {
-  background: var(--title-color);
+  background: var(--surface-color);
   border: 1px solid var(--border-color);
   border-radius: var(--radius);
   margin-bottom: 1rem;
@@ -144,13 +150,20 @@ figure {
   margin-bottom: 0.5rem;
 }
 
+.language-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  margin-top: 0.5rem;
+}
+
 .color-button {
   display: block;
   margin: 3rem auto;
   padding: 0.9rem 1.8rem;
   font-size: 1rem;
   background: var(--accent-color);
-  color: var(--title-color);
+  color: var(--surface-color);
   border: none;
   border-radius: var(--radius);
   cursor: pointer;
@@ -159,9 +172,17 @@ figure {
 
 .color-button:hover {
   background: var(--accent-light);
-  color: var(--title-color);
+  color: var(--surface-color);
   transform: translateY(-2px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* === ANIMATIONS === */
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 section,
@@ -181,13 +202,7 @@ section:nth-of-type(7) { animation-delay: 0.48s; }
 
 figure { animation-delay: 0.56s; }
 
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
+/* === MEDIA QUERIES === */
 @media (min-width: 900px) {
   header {
     padding: 6rem 2rem 4rem;
