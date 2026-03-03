@@ -12,10 +12,9 @@
       "#e9ebff", // bluish white
       "#f0eafc", // warm lavender
     ];
-    document.body.style.transition = "background-color 400ms ease";
     button.addEventListener("click", () => {
       const randomColor = palette[Math.floor(Math.random() * palette.length)];
-      document.body.style.backgroundColor = randomColor;
+      document.documentElement.style.setProperty("--background-color", randomColor);
     });
   }
 })();
