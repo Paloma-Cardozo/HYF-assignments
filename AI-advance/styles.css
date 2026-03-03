@@ -155,6 +155,10 @@ figure {
   margin-bottom: 0.5rem;
 }
 
+.item > *:last-child {
+  margin-bottom: 0;
+}
+
 .language-list {
   display: flex;
   flex-wrap: wrap;
@@ -164,6 +168,38 @@ figure {
 
 .language-list .item {
   margin-bottom: 0;
+}
+
+/* === TWO-COLUMN GRIDS === */
+.skills ul,
+.projects ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.skills .item,
+.projects .item {
+  margin-bottom: 0;
+}
+
+.skills,
+.projects,
+.languages {
+  padding-bottom: 1rem;
+}
+
+.item-meta a {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-style: normal;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.item-meta a:hover {
+  color: var(--accent-light);
 }
 
 .color-button {
@@ -221,6 +257,13 @@ figure { animation-delay: 0.56s; }
 }
 
 /* === MEDIA QUERIES === */
+@media (max-width: 600px) {
+  .skills ul,
+  .projects ul {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (min-width: 900px) {
   header {
     padding: 6rem 2rem 4rem;
