@@ -9,6 +9,7 @@
   --accent-color: #5a427c;
   --accent-light: #bca4e6;
   --muted-color: #777;
+  --header-bg: #fafafa;
   --transition: color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
   --max-width: 900px;
   --radius: 12px;
@@ -36,7 +37,7 @@ body {
 
 /* === HEADER === */
 header {
-  background: linear-gradient(180deg, var(--background-color) 0%, var(--surface-color) 100%);
+  background: linear-gradient(180deg, var(--header-bg) 0%, var(--surface-color) 100%);
   padding: 5rem 1rem 3rem;
   text-align: center;
   border-bottom: 1px solid var(--border-color);
@@ -126,7 +127,7 @@ figure {
   border-radius: 50%;
   filter: grayscale(10%);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  transition: var(--transition);
+  transition: var(--transition), filter 0.25s ease;
   object-fit: cover;
 }
 
@@ -161,6 +162,10 @@ figure {
   margin-top: 0.5rem;
 }
 
+.language-list .item {
+  margin-bottom: 0;
+}
+
 .color-button {
   display: block;
   margin: 3rem auto;
@@ -171,7 +176,7 @@ figure {
   border: none;
   border-radius: var(--radius);
   cursor: pointer;
-  transition: var(--transition);
+  transition: var(--transition), background-color 0.25s ease;
 }
 
 .color-button:hover {
