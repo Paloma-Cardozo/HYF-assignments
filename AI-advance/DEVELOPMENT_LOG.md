@@ -1,4 +1,4 @@
-# Portfolio Development Log — Best Practices Study Guide
+# Best Practices Study Guide
 
 This document records the most significant improvements made to my portfolio
 during the `portfolio-sprint1` branch, as part of an AI-assisted code review.
@@ -14,7 +14,6 @@ Each section explains **what changed**, **why it matters**, and shows a
 3. [Accessibility](#3-accessibility)
 4. [JavaScript Code Quality](#4-javascript-code-quality)
 5. [CSS Architecture](#5-css-architecture)
-6. [Project Structure](#6-project-structure)
 
 ---
 
