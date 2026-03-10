@@ -1,34 +1,43 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
 
+/* === VARIABLES === */
 :root {
   --background-color: #fefefe;
-  --title-color: #ffffff;
+  --surface-color: #ffffff;
   --text-color: #1a1a1a;
   --border-color: #ececec;
   --accent-color: #5a427c;
   --accent-light: #bca4e6;
   --muted-color: #777;
-  --transition: all 0.25s ease;
+  --header-bg: #fafafa;
+  --transition: color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
   --max-width: 900px;
   --radius: 12px;
 }
 
+/* === RESET === */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+/* === BASE === */
 html,
 body {
   background-color: var(--background-color);
   color: var(--text-color);
-  font-family: "Inter", "Raleway", system-ui, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   line-height: 1.7;
 }
 
+body {
+  transition: background-color 400ms ease;
+}
+
+/* === HEADER === */
 header {
-  background: linear-gradient(180deg, #fafafa 0%, #fff 100%);
+  background: linear-gradient(180deg, var(--header-bg) 0%, var(--surface-color) 100%);
   padding: 5rem 1rem 3rem;
   text-align: center;
   border-bottom: 1px solid var(--border-color);
@@ -64,12 +73,14 @@ header {
   color: var(--accent-light);
 }
 
+/* === LAYOUT === */
 main {
   max-width: var(--max-width);
   margin: 3rem auto;
   padding: 0 1.5rem;
 }
 
+/* === COMPONENTS === */
 .section-title {
   font-size: 1.4rem;
   font-weight: 600;
@@ -84,13 +95,13 @@ main {
   color: var(--text-color);
 }
 
-ul {
+main ul {
   list-style: none;
   margin-top: 1rem;
 }
 
 .item {
-  background: var(--title-color);
+  background: var(--surface-color);
   border: 1px solid var(--border-color);
   border-radius: var(--radius);
   margin-bottom: 1rem;
@@ -116,7 +127,7 @@ figure {
   border-radius: 50%;
   filter: grayscale(10%);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  transition: var(--transition);
+  transition: var(--transition), filter 0.25s ease;
   object-fit: cover;
 }
 
@@ -132,24 +143,91 @@ figure {
   font-size: 0.95rem;
 }
 
+.item-title {
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+
+.item-meta {
+  font-size: 0.85rem;
+  color: var(--muted-color);
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+
+.item > *:last-child {
+  margin-bottom: 0;
+}
+
+.language-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.language-list .item {
+  margin-bottom: 0;
+}
+
+/* === TWO-COLUMN GRIDS === */
+.skills ul,
+.projects ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.skills .item,
+.projects .item {
+  margin-bottom: 0;
+}
+
+.skills,
+.projects,
+.languages {
+  padding-bottom: 1rem;
+}
+
+.item-meta a {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-style: normal;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.item-meta a:hover {
+  color: var(--accent-light);
+}
+
 .color-button {
   display: block;
   margin: 3rem auto;
   padding: 0.9rem 1.8rem;
   font-size: 1rem;
   background: var(--accent-color);
-  color: var(--title-color);
+  color: var(--surface-color);
   border: none;
   border-radius: var(--radius);
   cursor: pointer;
-  transition: var(--transition);
+  transition: var(--transition), background-color 0.25s ease;
 }
 
 .color-button:hover {
   background: var(--accent-light);
-  color: var(--title-color);
+  color: var(--surface-color);
   transform: translateY(-2px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* === ANIMATIONS === */
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 section,
@@ -159,10 +237,30 @@ figure {
   animation: fadeIn 0.8s ease forwards;
 }
 
-@keyframes fadeIn {
-  to {
+section:nth-of-type(1) { animation-delay: 0s; }
+section:nth-of-type(2) { animation-delay: 0.08s; }
+section:nth-of-type(3) { animation-delay: 0.16s; }
+section:nth-of-type(4) { animation-delay: 0.24s; }
+section:nth-of-type(5) { animation-delay: 0.32s; }
+section:nth-of-type(6) { animation-delay: 0.40s; }
+section:nth-of-type(7) { animation-delay: 0.48s; }
+
+figure { animation-delay: 0.56s; }
+
+@media (prefers-reduced-motion: reduce) {
+  section,
+  figure {
+    animation: none;
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
+  }
+}
+
+/* === MEDIA QUERIES === */
+@media (max-width: 600px) {
+  .skills ul,
+  .projects ul {
+    grid-template-columns: 1fr;
   }
 }
 
