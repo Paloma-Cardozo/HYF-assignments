@@ -3,6 +3,7 @@ import { teas as data } from "./teas.js";
 // Rewrite exercises 1-3 using arrow functions.
 
 // 1. Log each tea's name to the console.
+
 data.forEach((tea) => console.log(tea.name));
 
 // 2. Log each tea in the format: "Sencha (Japan)"
