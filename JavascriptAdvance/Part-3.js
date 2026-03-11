@@ -1,5 +1,4 @@
 import { teas as data } from "./teas.js";
-console.log(data);
 
 // Get all organic teas.
 
