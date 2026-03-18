@@ -1,7 +1,7 @@
 import { teas } from "../teas.js";
 import fs from "fs";
 
-// Use reduce to calculate the total stock for each caffeine level:
+// Stock by Caffeine Level
 
 function stockByCaffeine(teas) {
   return teas.reduce((acc, tea) => {

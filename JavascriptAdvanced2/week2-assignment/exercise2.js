@@ -1,7 +1,7 @@
 import { teas } from "../teas.js";
 import fs from "fs";
 
-// Create an order processing system with simulated delays.
+// Order Processing System ⭐
 
 const order = {
   id: 1001,
