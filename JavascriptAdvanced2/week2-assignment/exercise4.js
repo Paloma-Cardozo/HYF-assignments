@@ -10,7 +10,13 @@ function generateInventoryReport(callback) {
       return;
     }
 
-    const inventoryUpdates = JSON.parse(data);
+    let inventoryUpdates;
+    try {
+      inventoryUpdates = JSON.parse(data);
+    } catch (error) {
+      callback(error, null);
+      return;
+    }
 
     const changes = inventoryUpdates.reduce(function (acc, update) {
       if (!acc[update.teaId]) acc[update.teaId] = 0;
