@@ -13,7 +13,7 @@ const order = {
   ],
 };
 
-function validateOrder(order, callback) {
+export function validateOrder(order, callback) {
   setTimeout(function () {
     const errors = [];
 
@@ -36,7 +36,7 @@ validateOrder(order, (result) => {
   console.log("Validation result:", result);
 });
 
-function calculateTotal(order, callback) {
+export function calculateTotal(order, callback) {
   setTimeout(function () {
     let totalValue = 0;
 
@@ -58,7 +58,7 @@ calculateTotal(order, (result) => {
   console.log("Validation result:", result);
 });
 
-function checkStock(order, callback) {
+export function checkStock(order, callback) {
   setTimeout(function () {
     const shortages = [];
 
