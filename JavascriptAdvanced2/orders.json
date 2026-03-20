@@ -1,0 +1,12 @@
+[
+  { "id": 1, "customerId": 101, "items": [{ "teaId": 1, "grams": 100 }] },
+  {
+    "id": 2,
+    "customerId": 102,
+    "items": [
+      { "teaId": 3, "grams": 50 },
+      { "teaId": 8, "grams": 30 }
+    ]
+  },
+  { "id": 3, "customerId": 103, "items": [{ "teaId": 5, "grams": 200 }] }
+]
