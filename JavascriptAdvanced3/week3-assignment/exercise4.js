@@ -2,7 +2,7 @@ const API_BASE = "https://tea-api-787553294298.europe-west1.run.app/api";
 
 // Create a function that checks if all items in an order are in stock:
 
-async function checkOrderStock(items) {
+export async function checkOrderStock(items) {
   try {
     const response = await fetch(`${API_BASE}/inventory`);
     const inventory = await response.json();
