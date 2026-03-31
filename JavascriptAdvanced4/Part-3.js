@@ -45,7 +45,7 @@ try {
 // Create an Order class with status transitions. An order starts as "pending" and can move through: pending → confirmed → shipped → delivered. (Exercise 10).
 // Add a getTotal() method to your Order class that uses .reduce() to sum all item totals. (Exercise 11)
 
-class Order {
+export class Order {
   constructor() {
     this.items = [];
     this.status = "pending";
