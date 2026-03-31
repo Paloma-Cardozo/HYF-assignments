@@ -5,7 +5,7 @@ import { teas } from "./teas.js";
 
 const teaTypes = ["green", "black", "herbal", "oolong", "white"];
 
-class Tea {
+export class Tea {
   constructor(name, type, origin, pricePerGram, organic) {
     if (!name) {
       throw new Error("Name is required");
@@ -44,7 +44,7 @@ console.log(earlGrey.describe());
 // Create an OrderItem class that takes a Tea instance and a number of grams. Add a lineTotal() method. (Exercise 7)
 // Add a describe() method to OrderItem that returns a formatted line. (Exercise 8)
 
-class OrderItem {
+export class OrderItem {
   constructor(tea, grams) {
     this.tea = tea;
     this.grams = grams;
