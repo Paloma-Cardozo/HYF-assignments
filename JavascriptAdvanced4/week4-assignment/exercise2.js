@@ -3,7 +3,7 @@ import { Tea } from "./exercise1.js";
 
 // Build OrderItem and Order classes that work together.
 
-class OrderItem {
+export class OrderItem {
   constructor(tea, grams) {
     if (grams <= 0) {
       throw new Error("Grams must be positive");
@@ -22,7 +22,7 @@ class OrderItem {
   }
 }
 
-class Order {
+export class Order {
   constructor() {
     this.items = [];
     this.status = "pending";
