@@ -4,7 +4,7 @@ import { OrderItem, Order } from "./exercise2.js";
 
 // Build a Customer class that tracks order history and spending.
 
-class Customer {
+export class Customer {
   constructor(name, email) {
     this.name = name;
     this.email = email;
@@ -42,11 +42,11 @@ const teaInstances = teas.map(Tea.fromObject);
 const customer = new Customer("Alex", "alex@example.com");
 
 const order1 = new Order();
-order1.addItem(new OrderItem(teaInstances[0], 100)); // Sencha
+order1.addItem(new OrderItem(teaInstances[0], 100));
 customer.placeOrder(order1);
 
 const order2 = new Order();
-order2.addItem(new OrderItem(teaInstances[7], 50)); // Matcha
+order2.addItem(new OrderItem(teaInstances[7], 50));
 customer.placeOrder(order2);
 
 console.log(customer.getOrderHistory());
