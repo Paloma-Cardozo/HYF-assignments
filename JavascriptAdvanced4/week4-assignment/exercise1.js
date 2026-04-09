@@ -1,7 +1,5 @@
 import { teas } from "../teas.js";
 
-// Build a complete Tea class with validation and a static factory method.
-
 const teaTypes = ["green", "black", "herbal", "oolong", "white"];
 
 export class Tea {
@@ -28,10 +26,11 @@ export class Tea {
   }
 
   describe() {
+    let description = `${this.name} (${this.type}) from ${this.origin} - ${(this.pricePerGram * 100).toFixed(2)} DKK/100g`;
     if (this.organic) {
-      return `${this.name} (${this.type}) from ${this.origin} - ${(this.pricePerGram * 100).toFixed(2)} DKK/100g [organic]`;
+      description += " [organic]";
     }
-    return `${this.name} (${this.type}) from ${this.origin} - ${(this.pricePerGram * 100).toFixed(2)} DKK/100g`;
+    return description;
   }
 
   static fromObject(obj) {

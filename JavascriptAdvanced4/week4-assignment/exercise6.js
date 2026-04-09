@@ -2,8 +2,6 @@ import { teas } from "../teas.js";
 import { Tea } from "./exercise1.js";
 import { OrderItem, Order } from "./exercise2.js";
 
-// Build specialized classes using inheritance.
-
 class PremiumTea extends Tea {
   constructor(name, type, origin, pricePerGram, organic, grade) {
     if (!["A", "B", "C"].includes(grade)) {

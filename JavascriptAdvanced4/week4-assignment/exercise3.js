@@ -1,8 +1,6 @@
 import { teas } from "../teas.js";
 import { Tea } from "./exercise1.js";
 
-// Build an Inventory class that tracks stock for multiple teas.
-
 export class Inventory {
   constructor() {
     this.stock = {};

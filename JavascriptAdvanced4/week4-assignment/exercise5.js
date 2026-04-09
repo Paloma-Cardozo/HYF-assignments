@@ -4,8 +4,6 @@ import { Inventory } from "./exercise3.js";
 import { OrderItem, Order } from "./exercise2.js";
 import { Tea } from "./exercise1.js";
 
-// Build a TeaShop class that orchestrates all the other classes together.
-
 class TeaCatalog {
   constructor(teas) {
     this.teas = teas;

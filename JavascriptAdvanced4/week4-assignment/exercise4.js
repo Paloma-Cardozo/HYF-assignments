@@ -2,8 +2,6 @@ import { teas } from "../teas.js";
 import { Tea } from "./exercise1.js";
 import { OrderItem, Order } from "./exercise2.js";
 
-// Build a Customer class that tracks order history and spending.
-
 export class Customer {
   constructor(name, email) {
     this.name = name;
