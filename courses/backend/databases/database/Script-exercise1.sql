@@ -139,7 +139,7 @@ ORDER BY t.title;
 SELECT t.title, t.description, t.due_date, s.name AS status FROM task t
 JOIN status s ON t.status_id = s.id  
 WHERE t.due_date < date('now')
-GROUP BY t.due_date;
+ORDER BY t.due_date;
 
 -- Part 3: Modifying the Database Schema
 
@@ -173,13 +173,13 @@ CREATE TABLE task_category (
 
 SELECT * FROM task_category;
 
--- Part 3, Question 4: Insert at least 3 categories
+-- Part 3, Question 5: Insert at least 3 categories
 
 INSERT INTO category (name, color) VALUES ('Work', 'Red'); 
 INSERT INTO category (name, color) VALUES ('Personal', 'Blue'); 
 INSERT INTO category (name, color) VALUES ('Study', 'Green');
 
--- Part 3, Question 5: Assign categories to at least 5 different tasks
+-- Part 3, Question 6: Assign categories to at least 5 different tasks
 
 INSERT INTO task_category (task_id, category_id) VALUES(1, 3);
 INSERT INTO task_category (task_id, category_id) VALUES(2, 3);
@@ -193,7 +193,7 @@ INSERT INTO task_category (task_id, category_id) VALUES(13, 2);
 INSERT INTO task_category (task_id, category_id) VALUES(14, 3);
 INSERT INTO task_category (task_id, category_id) VALUES(15, 2);
 INSERT INTO task_category (task_id, category_id) VALUES(17, 2);
-INSERT INTO task_category (task_id, category_id) VALUES(10, 2);
+INSERT INTO task_category (task_id, category_id) VALUES(11, 2);
 INSERT INTO task_category (task_id, category_id) VALUES(16, 2);
 INSERT INTO task_category (task_id, category_id) VALUES(21, 1);
 INSERT INTO task_category (task_id, category_id) VALUES(22, 3);
@@ -204,5 +204,47 @@ INSERT INTO task_category (task_id, category_id) VALUES(34, 2);
 INSERT INTO task_category (task_id, category_id) VALUES(39, 3);
 INSERT INTO task_category (task_id, category_id) VALUES(40, 3);
 
+-- Part 4: Advanced Queries
 
+-- Part 4, Question 1: Find all tasks in a specific category
+
+SELECT t.title, t.description FROM task t
+JOIN task_category tc ON tc.task_id = t.id
+WHERE tc.category_id = 3
+ORDER BY t.title;
+
+-- Part 4, Question 2: List tasks ordered by priority and by due date
+
+SELECT t.title, t.description, t.priority, t.due_date FROM task t
+ORDER BY
+	CASE 
+        WHEN t.priority = 'High' THEN 3
+        WHEN t.priority = 'Medium' THEN 2
+        WHEN t.priority = 'Low' THEN 1
+        ELSE 0 
+    END DESC, t.due_date ASC;
+
+-- Part 4, Question 3: Find which category has the most tasks
+
+SELECT c.name, COUNT(*) AS total FROM category c
+JOIN task_category tc ON tc.category_id = c.id
+JOIN task t ON tc.task_id = t.id
+GROUP BY c.name
+ORDER BY total DESC LIMIT 1;
+
+-- Part 4, Question 4: Get all high priority tasks that are either "In Progress" or "To Do"
+
+SELECT t.title, t.description, s.name FROM task t
+JOIN status s ON t.status_id = s.id  
+WHERE t.priority = 'High' AND (t.status_id = 1 OR t.status_id = 2)
+ORDER BY t.title;
+
+-- Part 4, Question 5: Find users who have tasks in more than one category
+
+SELECT u.name, COUNT(DISTINCT tc.category_id) AS total FROM user u
+JOIN user_task ut ON u.id = ut.user_id
+JOIN task_category tc ON ut.task_id = tc.task_id 
+GROUP BY u.name
+HAVING COUNT(DISTINCT tc.category_id) > 1 
+ORDER BY total;
 
