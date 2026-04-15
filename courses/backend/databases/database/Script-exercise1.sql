@@ -134,9 +134,75 @@ JOIN status s ON t.status_id = s.id
 WHERE t.status_id = 3
 ORDER BY t.title;
 
--- Part 2, Question 2: Find all overdue tasks
+-- Part 2, Question 3: Find all overdue tasks
 
 SELECT t.title, t.description, t.due_date, s.name AS status FROM task t
 JOIN status s ON t.status_id = s.id  
 WHERE t.due_date < date('now')
 GROUP BY t.due_date;
+
+-- Part 3: Modifying the Database Schema
+
+-- Part 3, Question 1: Add a new column
+
+ALTER TABLE task ADD COLUMN priority TEXT NOT NULL DEFAULT 'Medium';
+
+-- Part 3, Question 2: Update some existing tasks
+
+UPDATE task SET priority = 'Low' WHERE due_date IS NULL;
+UPDATE task SET priority = 'High' WHERE due_date > date('now');
+
+-- Part 3, Question 3: Create a new table
+
+CREATE TABLE category (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL,
+  color TEXT NOT NULL);
+
+SELECT * FROM category;
+
+-- Part 3, Question 4: Create a linking table
+
+CREATE TABLE task_category (
+  task_id INTEGER NOT NULL,
+  category_id INTEGER NOT NULL,
+  PRIMARY KEY (task_id, category_id),
+  FOREIGN KEY (task_id) REFERENCES task(id) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (category_id) REFERENCES category(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+SELECT * FROM task_category;
+
+-- Part 3, Question 4: Insert at least 3 categories
+
+INSERT INTO category (name, color) VALUES ('Work', 'Red'); 
+INSERT INTO category (name, color) VALUES ('Personal', 'Blue'); 
+INSERT INTO category (name, color) VALUES ('Study', 'Green');
+
+-- Part 3, Question 5: Assign categories to at least 5 different tasks
+
+INSERT INTO task_category (task_id, category_id) VALUES(1, 3);
+INSERT INTO task_category (task_id, category_id) VALUES(2, 3);
+INSERT INTO task_category (task_id, category_id) VALUES(6, 2);
+INSERT INTO task_category (task_id, category_id) VALUES(12, 2);
+INSERT INTO task_category (task_id, category_id) VALUES(5, 2);
+INSERT INTO task_category (task_id, category_id) VALUES(8, 2);
+INSERT INTO task_category (task_id, category_id) VALUES(7, 1);
+INSERT INTO task_category (task_id, category_id) VALUES(10, 2);
+INSERT INTO task_category (task_id, category_id) VALUES(13, 2);
+INSERT INTO task_category (task_id, category_id) VALUES(14, 3);
+INSERT INTO task_category (task_id, category_id) VALUES(15, 2);
+INSERT INTO task_category (task_id, category_id) VALUES(17, 2);
+INSERT INTO task_category (task_id, category_id) VALUES(10, 2);
+INSERT INTO task_category (task_id, category_id) VALUES(16, 2);
+INSERT INTO task_category (task_id, category_id) VALUES(21, 1);
+INSERT INTO task_category (task_id, category_id) VALUES(22, 3);
+INSERT INTO task_category (task_id, category_id) VALUES(24, 1);
+INSERT INTO task_category (task_id, category_id) VALUES(23, 1);
+INSERT INTO task_category (task_id, category_id) VALUES(26, 2);
+INSERT INTO task_category (task_id, category_id) VALUES(34, 2);
+INSERT INTO task_category (task_id, category_id) VALUES(39, 3);
+INSERT INTO task_category (task_id, category_id) VALUES(40, 3);
+
+
+
