@@ -67,7 +67,7 @@ JOIN user_task ut ON t.id = ut.task_id
 JOIN user u ON ut.user_id = u.id
 WHERE u.phone LIKE '+45%'; 
 
-SELECT t.title, t.description, s.name AS status_name, u.name FROM task t
+SELECT t.title, t.description, s.name AS status, u.name FROM task t
 JOIN status s ON t.status_id = s.id
 JOIN user_task ut ON t.id = ut.task_id 
 JOIN user u ON ut.user_id = u.id 
@@ -78,15 +78,13 @@ JOIN user_task ut ON t.id = ut.task_id
 JOIN user u ON ut.user_id = u.id 
 WHERE t.title LIKE '%Deploy%'; 
 
-SELECT u.name, COUNT (ut.task_id) FROM task t
+SELECT u.name, COUNT (ut.task_id) AS total FROM task t
 RIGHT JOIN user_task ut ON t.id = ut.task_id 
 RIGHT JOIN user u ON ut.user_id = u.id 
 GROUP BY u.id;
 
-SELECT t.title, s.name AS status_name, u.name, COUNT (u.name) AS [total] FROM task t
-JOIN status s ON t.status_id = s.id
-JOIN user_task ut ON t.id = ut.task_id 
-JOIN user u ON ut.user_id = u.id 
-WHERE s.name LIKE 'Done'; 
-ORDER BY COUNT(u.name) DESC;
-
+SELECT u.name, COUNT (t.id) AS total FROM task t
+RIGHT JOIN user_task ut ON t.id = ut.task_id AND t.status_id = 3
+RIGHT JOIN user u ON ut.user_id = u.id 
+GROUP BY u.name 
+ORDER BY total DESC;

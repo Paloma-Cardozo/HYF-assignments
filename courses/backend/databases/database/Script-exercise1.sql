@@ -91,16 +91,28 @@ ORDER BY total DESC;
 
 -- Part 1: Basic CRUD Operations
 
+-- Part 1, Question 1: Insert a new user 
+
 INSERT INTO user (name, email, phone) VALUES
   ('Paloma Cardozo', 'palomacardozo88@gmail.com', '');
+
+-- Part 1, Question 2: Insert a new task
 
 INSERT INTO task (title, description, created, updated, due_date, status_id) VALUES
   ('Learn SQL', 'Practice database queries', datetime('now'), datetime('now'), '2026-04-21', 2);
 
+-- Part 1, Question 3: Update the title of the task
+
 UPDATE task SET title = 'Master SQL Basics' WHERE id = '40';
+
+-- Part 1, Question 4: Change the due date of your task
 
 UPDATE task SET due_date = '2026-04-28' WHERE id = '40';
 
+-- Part 1, Question 5: Change the status of your task 
+
 UPDATE task SET status_id = '3' WHERE id = '40';
+
+-- Part 1, Question 6: Delete one of the tasks
 
 DELETE FROM task WHERE id = '18';
