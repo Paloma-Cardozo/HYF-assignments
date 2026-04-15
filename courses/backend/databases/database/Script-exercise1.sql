@@ -101,6 +101,8 @@ INSERT INTO user (name, email, phone) VALUES
 INSERT INTO task (title, description, created, updated, due_date, status_id) VALUES
   ('Learn SQL', 'Practice database queries', datetime('now'), datetime('now'), '2026-04-21', 2);
 
+INSERT INTO user_task (user_id, task_id) VALUES(14, 40);
+
 -- Part 1, Question 3: Update the title of the task
 
 UPDATE task SET title = 'Master SQL Basics' WHERE id = '40';
@@ -116,3 +118,25 @@ UPDATE task SET status_id = '3' WHERE id = '40';
 -- Part 1, Question 6: Delete one of the tasks
 
 DELETE FROM task WHERE id = '18';
+
+-- Part 2: Working with Relationships
+
+-- Part 2, Question 1: List all users who don't have any tasks assigned
+
+SELECT u.name FROM user u
+LEFT JOIN user_task ut ON u.id = ut.user_id
+WHERE ut.user_id IS NULL;
+
+-- Part 2, Question 2: Find all tasks with a status of "Done"
+
+SELECT t.title, t.description FROM task t
+JOIN status s ON t.status_id = s.id  
+WHERE t.status_id = 3
+ORDER BY t.title;
+
+-- Part 2, Question 2: Find all overdue tasks
+
+SELECT t.title, t.description, t.due_date, s.name AS status FROM task t
+JOIN status s ON t.status_id = s.id  
+WHERE t.due_date < date('now')
+GROUP BY t.due_date;
