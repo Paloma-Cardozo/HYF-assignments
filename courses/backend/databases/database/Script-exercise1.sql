@@ -99,7 +99,7 @@ INSERT INTO user (name, email, phone) VALUES
 -- Part 1, Question 2: Insert a new task
 
 INSERT INTO task (title, description, created, updated, due_date, status_id) VALUES
-  ('Learn SQL', 'Practice database queries', datetime('now'), datetime('now'), '2026-04-21', 2);
+  ('Learn SQL', 'Practice database queries', datetime('now'), datetime('now'), datetime('now', '+7 days'), 2);
 
 INSERT INTO user_task (user_id, task_id) VALUES(14, 40);
 
@@ -109,7 +109,7 @@ UPDATE task SET title = 'Master SQL Basics' WHERE id = 40;
 
 -- Part 1, Question 4: Change the due date of your task
 
-UPDATE task SET due_date = '2026-04-28' WHERE id = 40;
+UPDATE task SET due_date = datetime('now', '+14 days') WHERE id = 40;
 
 -- Part 1, Question 5: Change the status of your task 
 
