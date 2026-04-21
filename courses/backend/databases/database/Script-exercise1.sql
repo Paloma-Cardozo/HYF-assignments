@@ -105,19 +105,19 @@ INSERT INTO user_task (user_id, task_id) VALUES(14, 40);
 
 -- Part 1, Question 3: Update the title of the task
 
-UPDATE task SET title = 'Master SQL Basics' WHERE id = '40';
+UPDATE task SET title = 'Master SQL Basics' WHERE id = 40;
 
 -- Part 1, Question 4: Change the due date of your task
 
-UPDATE task SET due_date = '2026-04-28' WHERE id = '40';
+UPDATE task SET due_date = '2026-04-28' WHERE id = 40;
 
 -- Part 1, Question 5: Change the status of your task 
 
-UPDATE task SET status_id = '3' WHERE id = '40';
+UPDATE task SET status_id = 3 WHERE id = 40;
 
 -- Part 1, Question 6: Delete one of the tasks
 
-DELETE FROM task WHERE id = '18';
+DELETE FROM task WHERE id = 18;
 
 -- Part 2: Working with Relationships
 
