@@ -78,13 +78,13 @@ JOIN user_task ut ON t.id = ut.task_id
 JOIN user u ON ut.user_id = u.id 
 WHERE t.title LIKE '%Deploy%'; 
 
-SELECT u.name, COUNT (ut.task_id) AS total FROM task t
-RIGHT JOIN user_task ut ON t.id = ut.task_id 
-RIGHT JOIN user u ON ut.user_id = u.id 
+SELECT u.name, COUNT (ut.task_id) AS total FROM user u
+LEFT JOIN user_task ut ON ut.user_id = u.id 
+LEFT JOIN task t ON ut.task_id = t.id 
 GROUP BY u.id;
 
-SELECT u.name, COUNT (t.id) AS total FROM task t
-RIGHT JOIN user_task ut ON t.id = ut.task_id AND t.status_id = 3
-RIGHT JOIN user u ON ut.user_id = u.id 
+SELECT u.name, COUNT (t.id) AS total FROM user u
+LEFT JOIN user_task ut ON ut.user_id = u.id 
+LEFT JOIN task t ON ut.task_id = t.id AND t.status_id = 3
 GROUP BY u.name 
 ORDER BY total DESC;
