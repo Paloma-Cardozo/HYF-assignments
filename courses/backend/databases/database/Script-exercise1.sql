@@ -131,7 +131,7 @@ WHERE ut.user_id IS NULL;
 
 SELECT t.title, t.description FROM task t
 JOIN status s ON t.status_id = s.id  
-WHERE t.status_id = 3
+WHERE s.name = 'Done'
 ORDER BY t.title;
 
 -- Part 2, Question 3: Find all overdue tasks
@@ -236,7 +236,7 @@ ORDER BY total DESC LIMIT 1;
 
 SELECT t.title, t.description, s.name FROM task t
 JOIN status s ON t.status_id = s.id  
-WHERE t.priority = 'High' AND (t.status_id = 1 OR t.status_id = 2)
+WHERE t.priority = 'High' AND s.name IN ('Not started', 'In progress')
 ORDER BY t.title;
 
 -- Part 4, Question 5: Find users who have tasks in more than one category
