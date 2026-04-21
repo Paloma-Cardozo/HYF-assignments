@@ -101,7 +101,9 @@ INSERT INTO user (name, email, phone) VALUES
 INSERT INTO task (title, description, created, updated, due_date, status_id) VALUES
   ('Learn SQL', 'Practice database queries', datetime('now'), datetime('now'), datetime('now', '+7 days'), 2);
 
-INSERT INTO user_task (user_id, task_id) VALUES(14, 40);
+INSERT INTO user_task (user_id, task_id) 
+SELECT u.id, t.id FROM user u, task t
+WHERE u.name = 'Paloma Cardozo' AND t.title = 'Learn SQL';
 
 -- Part 1, Question 3: Update the title of the task
 
