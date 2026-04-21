@@ -119,6 +119,7 @@ UPDATE task SET status_id = 3, updated = datetime('now') WHERE id = 40;
 
 -- Part 1, Question 6: Delete one of the tasks
 
+DELETE FROM user_task WHERE task_id = 18;
 DELETE FROM task WHERE id = 18;
 
 -- Part 2: Working with Relationships
