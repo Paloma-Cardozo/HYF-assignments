@@ -107,15 +107,15 @@ WHERE u.name = 'Paloma Cardozo' AND t.title = 'Learn SQL';
 
 -- Part 1, Question 3: Update the title of the task
 
-UPDATE task SET title = 'Master SQL Basics' WHERE id = 40;
+UPDATE task SET title = 'Master SQL Basics', updated = datetime('now') WHERE id = 40;
 
 -- Part 1, Question 4: Change the due date of your task
 
-UPDATE task SET due_date = datetime('now', '+14 days') WHERE id = 40;
+UPDATE task SET due_date = datetime('now', '+14 days'), updated = datetime('now') WHERE id = 40;
 
 -- Part 1, Question 5: Change the status of your task 
 
-UPDATE task SET status_id = 3 WHERE id = 40;
+UPDATE task SET status_id = 3, updated = datetime('now') WHERE id = 40;
 
 -- Part 1, Question 6: Delete one of the tasks
 
@@ -151,8 +151,8 @@ ALTER TABLE task ADD COLUMN priority TEXT NOT NULL DEFAULT 'Medium';
 
 -- Part 3, Question 2: Update some existing tasks
 
-UPDATE task SET priority = 'Low' WHERE due_date IS NULL;
-UPDATE task SET priority = 'High' WHERE due_date > date('now');
+UPDATE task SET priority = 'Low', updated = datetime('now') WHERE due_date IS NULL;
+UPDATE task SET priority = 'High', updated = datetime('now') WHERE due_date > date('now');
 
 -- Part 3, Question 3: Create a new table
 
