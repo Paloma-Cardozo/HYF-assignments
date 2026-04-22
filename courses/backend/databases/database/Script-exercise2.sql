@@ -203,15 +203,25 @@ ORDER BY total DESC;
 -- 4. User input is treated as a DATA VALUE, not as CODE
 -- 5. Injection attacks become impossible
 
+-- Part C, Question 1: Write a transaction that reassigns all tasks from one user to another, then deletes the original user. 
+
+BEGIN TRANSACTION; 
+  UPDATE user_task SET user_id = ? WHERE user_id = ?;
+  DELETE FROM user WHERE id = ?;
+COMMIT; 
+
+-- Part C, Question 2: Write a second transaction that demonstrates a deliberate rollback: attempt to reassign tasks and then intentionally trigger a failure. 
+
+BEGIN TRANSACTION; 
+  UPDATE user_task SET user_id = 5 WHERE user_id = 1;
+
+  INSERT INTO task (title, description, created, updated, status_id) 
+  VALUES ('Impossible Task', 'This will fail', datetime('now'), datetime('now'), 999);
+ROLLBACK;
+  
 
 
 
-
-
-
-
-
--- Part C, Question 1: ...your transaction here...
 
 -- Part 1, Question 2: Insert a new task
 
