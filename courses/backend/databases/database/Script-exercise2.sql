@@ -147,12 +147,69 @@ GROUP BY u.id
 HAVING total > 2
 ORDER BY total DESC;
 
+-- Part B, Question 1: Spot the Vulnerability
+
+-- 1. Vulnerable input: ' OR '1'='1
+
+-- Generated SQL: SELECT * FROM task WHERE user_id = (SELECT id FROM user WHERE name = '' OR '1'='1')
+
+-- What happens: The condition '1'='1' is ALWAYS TRUE, so the WHERE clause returns ALL rows from the task table.
+
+-- Data returned: All tasks in the database (complete data leak)
+
+-- Why it's dangerous:
+-- - String concatenation allows arbitrary SQL injection
+-- - Attacker leaks all tasks without knowing user IDs or names
+-- - Violates confidentiality: unauthorized access to sensitive data
+
+-- The user input should NEVER be concatenated into SQL
+
+-- 2. Malicious input: '; DELETE FROM task; --
+
+-- How the attack works:
+-- 1. ' closes the string that was opened by: WHERE name = '
+-- 2. ; terminates the SELECT statement
+-- 3. DELETE FROM task; executes a second SQL statement, deleting ALL rows
+-- 4. -- comments out the rest of the line (the closing ')
+
+-- Generated SQL breakdown: SELECT * FROM task WHERE user_id = (SELECT id FROM user WHERE name = ''; DELETE FROM task; --')
+
+-- Impact:
+-- - Complete data loss (integrity violation)
+-- - No way to track who did it (attacker had no account)
+-- - The app accepted this from a public, unsanitized search box
+-- - This is a DESTRUCTIVE attack (worse than data theft)
+
+-- SQL Injection is a critical vulnerability
+
+-- Part B, Question 2: Fix the Vulnerability
+
+-- function getTasksByUser(userName) {
+--   const query = `SELECT * FROM task 
+--     WHERE user_id = (
+--       SELECT id FROM user 
+--       WHERE name = ?
+--     )`;
+--
+--   db.all(query, [userName], (err, rows) => {
+--     displayResults(rows);
+--   });
+-- }
+
+-- Why this is safe:
+-- 1. The ? placeholder separates SQL code from user data
+-- 2. userName is passed separately in [userName], never concatenated
+-- 3. The database library automatically escapes the input
+-- 4. User input is treated as a DATA VALUE, not as CODE
+-- 5. Injection attacks become impossible
 
 
 
--- Part B.1: ...your explanation and attack string as comments...
 
--- Part B.2: ...your fix as a code comment...
+
+
+
+
 
 -- Part C, Question 1: ...your transaction here...
 
