@@ -102,7 +102,7 @@ router.post("/", async (request, response) => {
     const user_id = body.user_id;
     const title = body.title;
     const contents = body.contents;
-    const is_private = body.is_private;
+    let is_private = body.is_private;
 
     if (is_private === undefined) {
       is_private = 0;

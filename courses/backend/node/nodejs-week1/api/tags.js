@@ -29,9 +29,7 @@ router.get("/:id", async (request, response) => {
   try {
     const id = request.params.id;
 
-    const tag = await knexInstance("tags")
-      .where("id", id)
-      .first();
+    const tag = await knexInstance("tags").where("id", id).first();
 
     if (!tag) {
       return response.status(404).json({ error: "Tag not found" });
