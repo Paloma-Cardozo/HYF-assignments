@@ -175,7 +175,6 @@ router.put("/:id", async (request, response) => {
 router.delete("/:id", async (request, response) => {
   try {
     const id = request.params.id;
-
     const snippet = await knexInstance("snippets").where("id", id).first();
 
     if (!snippet) {
@@ -187,6 +186,95 @@ router.delete("/:id", async (request, response) => {
     response.status(200).json({
       message: "Snippet deleted successfully",
       id: id,
+    });
+  } catch (error) {
+    response.status(500).json({ error: error.message });
+  }
+});
+
+router.get("/:id/tags", async (request, response) => {
+  try {
+    const id = request.params.id;
+    const snippet = await knexInstance("snippets").where("id", id).first();
+
+    if (!snippet) {
+      return response.status(404).json({ error: "Snippet not found" });
+    }
+
+    const tags = await knexInstance("snippet_tag")
+      .select("tags.id", "tags.name")
+      .join("tags", "snippet_tag.tag_id", "tags.id")
+      .where("snippet_tag.snippet_id", id);
+
+    response.json(tags);
+  } catch (error) {
+    response.status(500).json({ error: error.message });
+  }
+});
+
+router.post("/:id/tags", async (request, response) => {
+  try {
+    const id = request.params.id;
+    const body = request.body;
+    const validation = validateRequiredFields(body, ["tag_id"]);
+
+    if (!validation.valid) {
+      return response.status(400).json({ error: validation.error });
+    }
+
+    const snippet = await knexInstance("snippets").where("id", id).first();
+
+    if (!snippet) {
+      return response.status(404).json({ error: "Snippet not found" });
+    }
+
+    const tag_id = body.tag_id;
+    const tag = await knexInstance("tags").where("id", tag_id).first();
+
+    if (!tag) {
+      return response.status(404).json({ error: "Tag not found" });
+    }
+
+    await knexInstance("snippet_tag").insert({
+      snippet_id: id,
+      tag_id: tag_id,
+    });
+
+    response.status(201).json({
+      message: "Tag added to snippet successfully",
+      snippet_id: id,
+      tag_id: tag_id,
+    });
+  } catch (error) {
+    response.status(500).json({ error: error.message });
+  }
+});
+
+router.delete("/:id/tags/:tag_id", async (request, response) => {
+  try {
+    const id = request.params.id;
+    const tag_id = request.params.tag_id;
+
+    const relation = await knexInstance("snippet_tag")
+      .where("snippet_id", id)
+      .where("tag_id", tag_id)
+      .first();
+
+    if (!relation) {
+      return response
+        .status(404)
+        .json({ error: "Tag not associated with this snippet" });
+    }
+
+    await knexInstance("snippet_tag")
+      .where("snippet_id", id)
+      .where("tag_id", tag_id)
+      .delete();
+
+    response.status(200).json({
+      message: "Tag removed from snippet successfully",
+      snippet_id: id,
+      tag_id: tag_id,
     });
   } catch (error) {
     response.status(500).json({ error: error.message });

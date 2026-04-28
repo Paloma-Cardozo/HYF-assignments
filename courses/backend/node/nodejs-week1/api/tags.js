@@ -1,46 +1,98 @@
-// PUT actualizar snippet
+import express from "express";
+import knexInstance from "../database.js";
+
+const router = express.Router();
+
+function validateRequiredFields(data, requiredFields) {
+  const missing = requiredFields.filter((field) => !data[field]);
+
+  if (missing.length > 0) {
+    return {
+      valid: false,
+      error: `Missing required fields: ${missing.join(", ")}`,
+    };
+  }
+
+  return { valid: true };
+}
+
+router.get("/", async (request, response) => {
+  try {
+    const tags = await knexInstance("tags").select("id", "name");
+    response.json(tags);
+  } catch (error) {
+    response.status(500).json({ error: error.message });
+  }
+});
+
+router.get("/:id", async (request, response) => {
+  try {
+    const id = request.params.id;
+
+    const tag = await knexInstance("tags")
+      .where("id", id)
+      .first();
+
+    if (!tag) {
+      return response.status(404).json({ error: "Tag not found" });
+    }
+
+    response.json(tag);
+  } catch (error) {
+    response.status(500).json({ error: error.message });
+  }
+});
+
+router.post("/", async (request, response) => {
+  try {
+    const body = request.body;
+
+    const validation = validateRequiredFields(body, ["name"]);
+
+    if (!validation.valid) {
+      return response.status(400).json({ error: validation.error });
+    }
+
+    const name = body.name;
+
+    const result = await knexInstance("tags").insert({
+      name: name,
+    });
+
+    const newId = result[0];
+
+    response.status(201).json({
+      message: "Tag created successfully",
+      id: newId,
+    });
+  } catch (error) {
+    response.status(500).json({ error: error.message });
+  }
+});
+
 router.put("/:id", async (request, response) => {
   try {
     const id = request.params.id;
     const body = request.body;
 
-    // Validar que al menos un campo venga para actualizar
-    const validation = validateRequiredFields(body, [
-      "user_id",
-      "title",
-      "contents",
-    ]);
+    const validation = validateRequiredFields(body, ["name"]);
     if (!validation.valid) {
       return response.status(400).json({ error: validation.error });
     }
 
-    // Verificar que el snippet existe
-    const snippet = await knexInstance("snippets").where("id", id).first();
-    if (!snippet) {
-      return response.status(404).json({ error: "Snippet not found" });
+    const tag = await knexInstance("tags").where("id", id).first();
+    if (!tag) {
+      return response.status(404).json({ error: "Tag not found" });
     }
 
-    // Obtener datos
-    const user_id = body.user_id;
-    const title = body.title;
-    const contents = body.contents;
-    let is_private = body.is_private;
+    const name = body.name;
 
-    // Si is_private no viene, mantener el existente
-    if (is_private === undefined) {
-      is_private = snippet.is_private;
-    }
-
-    // Actualizar en BD
-    await knexInstance("snippets").where("id", id).update({
-      user_id: user_id,
-      title: title,
-      contents: contents,
-      is_private: is_private,
+    await knexInstance("tags").where("id", id).update({
+      name: name,
     });
 
     response.status(200).json({
-      message: "Snippet updated successfully",
+      message: "Tag updated successfully",
       id: id,
     });
   } catch (error) {
@@ -48,25 +100,24 @@ router.put("/:id", async (request, response) => {
   }
 });
 
-// DELETE eliminar snippet
 router.delete("/:id", async (request, response) => {
   try {
     const id = request.params.id;
 
-    // Verificar que el snippet existe
-    const snippet = await knexInstance("snippets").where("id", id).first();
-    if (!snippet) {
-      return response.status(404).json({ error: "Snippet not found" });
+    const tag = await knexInstance("tags").where("id", id).first();
+    if (!tag) {
+      return response.status(404).json({ error: "Tag not found" });
     }
 
-    // Eliminar de BD
-    await knexInstance("snippets").where("id", id).delete();
+    await knexInstance("tags").where("id", id).delete();
 
     response.status(200).json({
-      message: "Snippet deleted successfully",
+      message: "Tag deleted successfully",
       id: id,
     });
   } catch (error) {
     response.status(500).json({ error: error.message });
   }
 });
+
+export default router;
