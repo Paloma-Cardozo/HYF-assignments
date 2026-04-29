@@ -57,6 +57,23 @@ INSERT INTO user_task (user_id, task_id) VALUES (1, 1);
 
 SELECT * FROM user_task;
 
+CREATE TABLE IF NOT EXISTS category (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL,
+  color TEXT NOT NULL);
+
+SELECT * FROM category;
+
+CREATE TABLE IF NOT EXISTS task_category (
+  task_id INTEGER NOT NULL,
+  category_id INTEGER NOT NULL,
+  PRIMARY KEY (task_id, category_id),
+  FOREIGN KEY (task_id) REFERENCES task(id) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (category_id) REFERENCES category(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+SELECT * FROM task_category;
+
 -- How many tasks are overdue? (due_date < today)
 
 SELECT COUNT(*) AS tasks_overdue FROM task t
@@ -253,8 +270,3 @@ SELECT
 	WHERE due_date < date('now') AND due_date IS NOT NULL) AS tasks_overdue,
 	(SELECT  COUNT(DISTINCT u.id) FROM user u
 	JOIN user_task ut ON u.id = ut.user_id) AS total_user;
-
-
-
-
-
