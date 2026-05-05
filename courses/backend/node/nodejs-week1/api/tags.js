@@ -1,20 +1,8 @@
 import express from "express";
 import knexInstance from "../database.js";
+import { createTagSchema, updateTagSchema } from "../validation.js";
 
 const router = express.Router();
-
-function validateRequiredFields(data, requiredFields) {
-  const missing = requiredFields.filter((field) => !data[field]);
-
-  if (missing.length > 0) {
-    return {
-      valid: false,
-      error: `Missing required fields: ${missing.join(", ")}`,
-    };
-  }
-
-  return { valid: true };
-}
 
 router.get("/", async (request, response) => {
   try {
@@ -44,14 +32,14 @@ router.get("/:id", async (request, response) => {
 router.post("/", async (request, response) => {
   try {
     const body = request.body;
+    const validation = createTagSchema.safeParse(body);
 
-    const validation = validateRequiredFields(body, ["name"]);
-
-    if (!validation.valid) {
-      return response.status(400).json({ error: validation.error });
+    if (!validation.success) {
+      return response.status(400).json({ error: validation.error.errors });
     }
 
-    const name = body.name;
+    const data = validation.data;
+    const name = data.name;
 
     const result = await knexInstance("tags").insert({
       name: name,
@@ -73,17 +61,18 @@ router.put("/:id", async (request, response) => {
     const id = request.params.id;
     const body = request.body;
 
-    const validation = validateRequiredFields(body, ["name"]);
-    if (!validation.valid) {
-      return response.status(400).json({ error: validation.error });
+    const validation = updateTagSchema.safeParse(body);
+    if (!validation.success) {
+      return response.status(400).json({ error: validation.error.errors });
     }
+
+    const data = validation.data;
+    const name = data.name;
 
     const tag = await knexInstance("tags").where("id", id).first();
     if (!tag) {
       return response.status(404).json({ error: "Tag not found" });
     }
-
-    const name = body.name;
 
     await knexInstance("tags").where("id", id).update({
       name: name,

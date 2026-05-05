@@ -1,0 +1,274 @@
+openapi: 3.0.0
+info:
+  title: Snippets API
+  version: 1.0.0
+  description: API for managing code snippets and tags
+  x-design-decisions: |
+    - Error format: { "error": "message" }
+    - Status codes: 201 (created), 200 (success), 400 (validation), 404 (not found), 500 (error)
+    - Validation: Middleware for JSON parsing, Zod for per-endpoint validation
+
+paths:
+  /api/snippets:
+    get:
+      summary: List all public snippets
+      description: Retrieve a list of all code snippets that are not private
+      responses:
+        "200":
+          description: List of snippets retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                    title:
+                      type: string
+                      example: "Hello World in JavaScript"
+                    contents:
+                      type: string
+                      example: "console.log('Hello, world!');"
+                    created_at:
+                      type: string
+                      example: "2026-05-04T10:30:00Z"
+                    is_private:
+                      type: boolean
+                      example: false
+                    user:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        first_name:
+                          type: string
+                          example: "John"
+                        last_name:
+                          type: string
+                          example: "Doe"
+        "500":
+          description: Server error. Database connection failed or internal error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                database_error:
+                  value:
+                    error: "Internal server error"
+    post:
+      summary: Create a new snippet
+      description: Create a new code snippet with title and contents
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                  example: 1
+                title:
+                  type: string
+                  example: "My JavaScript Function"
+                contents:
+                  type: string
+                  example: "function hello() { return 'Hi'; }"
+                is_private:
+                  type: boolean
+                  example: false
+      responses:
+        "201":
+          description: Snippet created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Snippet created successfully"
+                  id:
+                    type: integer
+                    example: 1
+        "400":
+          description: Validation error. Possible cases:
+            - user_id is missing or not a positive number
+            - title is missing or less than 3 characters
+            - contents is missing or less than 3 characters
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                missing_title:
+                  value:
+                    error: "title must be at least 3 characters long"
+                multiple_errors:
+                  value:
+                    error: ["title must be at least 3 characters long", "contents must be at least 3 characters long"]
+        "500":
+          description: Server error. Database connection failed or internal error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                database_error:
+                  value:
+                    error: "Internal server error"
+  /api/snippets/{id}:
+    get:
+      summary: Get a specific snippet by ID
+      description: Retrieve a single code snippet by its ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          example: 1
+      responses:
+        "200":
+          description: Snippet retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  title:
+                    type: string
+                    example: "Hello World in JavaScript"
+                  contents:
+                    type: string
+                    example: "console.log('Hello, world!');"
+                  created_at:
+                    type: string
+                    example: "2026-05-04T10:30:00Z"
+                  is_private:
+                    type: boolean
+                    example: false
+                  user:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      first_name:
+                        type: string
+                        example: "John"
+                      last_name:
+                        type: string
+                        example: "Doe"
+        "404":
+          description: Snippet not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                not_found:
+                  value:
+                    error: "Snippet not found"
+        "500":
+          description: Server error. Database connection failed or internal error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                database_error:
+                  value:
+                    error: "Internal server error"
+    put:
+      summary: Update an existing snippet
+      description: Update a snippet by its ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          example: 1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                  example: 1
+                title:
+                  type: string
+                  example: "Updated Title"
+                contents:
+                  type: string
+                  example: "Updated content here"
+                is_private:
+                  type: boolean
+                  example: false
+      responses:
+        "200":
+          description: Snippet updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Snippet updated successfully"
+                  id:
+                    type: integer
+                    example: 1
+        "400":
+          description: Validation error. Possible cases:
+            - user_id is missing or not a positive number
+            - title is missing or less than 3 characters
+            - contents is missing or less than 3 characters
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                invalid_title:
+                  value:
+                    error: "title must be at least 3 characters long"        
+        "404":
+          description: Snippet not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                not_found:
+                  value:
+                    error: "Snippet not found"
+        "500":
+          description: Server error. Database connection failed or internal error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                database_error:
+                  value:
+                    error: "Internal server error"
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Error message here"

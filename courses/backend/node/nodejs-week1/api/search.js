@@ -7,6 +7,14 @@ router.get("/", async (request, response) => {
   try {
     const q = request.query.q;
 
+    if (q && typeof q !== "string") {
+      return response.status(400).json({ error: "Invalid search query" });
+    }
+
+    if (q && q.length > 100) {
+      return response.status(400).json({ error: "Search query too long" });
+    }
+
     if (!q) {
       const snippets = await knexInstance("snippets").select(
         "id",

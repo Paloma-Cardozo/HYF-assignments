@@ -1,20 +1,12 @@
 import express from "express";
 import knexInstance from "../database.js";
+import {
+  createSnippetSchema,
+  updateSnippetSchema,
+  addTagToSnippetSchema,
+} from "../validation.js";
 
 const router = express.Router();
-
-function validateRequiredFields(data, requiredFields) {
-  const missing = requiredFields.filter((field) => !data[field]);
-
-  if (missing.length > 0) {
-    return {
-      valid: false,
-      error: `Missing required fields: ${missing.join(", ")}`,
-    };
-  }
-
-  return { valid: true };
-}
 
 router.get("/", async (request, response) => {
   try {
@@ -89,20 +81,17 @@ router.post("/", async (request, response) => {
   try {
     const body = request.body;
 
-    const validation = validateRequiredFields(body, [
-      "user_id",
-      "title",
-      "contents",
-    ]);
+    const validation = createSnippetSchema.safeParse(body);
 
-    if (!validation.valid) {
-      return response.status(400).json({ error: validation.error });
+    if (!validation.success) {
+      return response.status(400).json({ error: validation.error.errors });
     }
 
-    const user_id = body.user_id;
-    const title = body.title;
-    const contents = body.contents;
-    let is_private = body.is_private;
+    const data = validation.data;
+    const user_id = data.user_id;
+    const title = data.title;
+    const contents = data.contents;
+    let is_private = data.is_private;
 
     if (is_private === undefined) {
       is_private = 0;
@@ -131,15 +120,13 @@ router.put("/:id", async (request, response) => {
     const id = request.params.id;
     const body = request.body;
 
-    const validation = validateRequiredFields(body, [
-      "user_id",
-      "title",
-      "contents",
-    ]);
+    const validation = updateSnippetSchema.safeParse(body);
 
-    if (!validation.valid) {
-      return response.status(400).json({ error: validation.error });
+    if (!validation.success) {
+      return response.status(400).json({ error: validation.error.errors });
     }
+
+    const data = validation.data;
 
     const snippet = await knexInstance("snippets").where("id", id).first();
 
@@ -147,10 +134,10 @@ router.put("/:id", async (request, response) => {
       return response.status(404).json({ error: "Snippet not found" });
     }
 
-    const user_id = body.user_id;
-    const title = body.title;
-    const contents = body.contents;
-    let is_private = body.is_private;
+    const user_id = data.user_id;
+    const title = data.title;
+    const contents = data.contents;
+    let is_private = data.is_private;
 
     if (is_private === undefined) {
       is_private = snippet.is_private;
@@ -216,11 +203,14 @@ router.post("/:id/tags", async (request, response) => {
   try {
     const id = request.params.id;
     const body = request.body;
-    const validation = validateRequiredFields(body, ["tag_id"]);
+    const validation = addTagToSnippetSchema.safeParse(body);
 
-    if (!validation.valid) {
-      return response.status(400).json({ error: validation.error });
+    if (!validation.success) {
+      return response.status(400).json({ error: validation.error.errors });
     }
+
+    const data = validation.data;
+    const tag_id = data.tag_id;
 
     const snippet = await knexInstance("snippets").where("id", id).first();
 
@@ -228,7 +218,6 @@ router.post("/:id/tags", async (request, response) => {
       return response.status(404).json({ error: "Snippet not found" });
     }
 
-    const tag_id = body.tag_id;
     const tag = await knexInstance("tags").where("id", tag_id).first();
 
     if (!tag) {
