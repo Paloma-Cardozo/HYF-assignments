@@ -1,0 +1,278 @@
+{
+  "info": {
+    "_postman_id": "d30ec37f-0e70-4025-a261-cc7d69e3f8df",
+    "name": "Snippets API",
+    "description": "Collection for testing Snippets API endpoints with CRUD operations and search functionality",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "50787685",
+    "_collection_link": "https://go.postman.co/collection/50787685-d30ec37f-0e70-4025-a261-cc7d69e3f8df?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Get All Snippets",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "  pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Response has data array\", function () {\r",
+              "  const json = pm.response.json();\r",
+              "  pm.expect(json).to.have.property(\"data\");\r",
+              "  pm.expect(json.data).to.be.an(\"array\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"First snippet has required fields\", function () {\r",
+              "  const json = pm.response.json();\r",
+              "  if (json.length > 0) {\r",
+              "    const snippet = json[0];\r",
+              "    pm.expect(snippet).to.have.property(\"id\");\r",
+              "    pm.expect(snippet).to.have.property(\"title\");\r",
+              "    pm.expect(snippet).to.have.property(\"contents\");\r",
+              "    pm.expect(snippet).to.have.property(\"user\");\r",
+              "  }\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Snippet has numeric 'id'\", function () {\r",
+              "  const json = pm.response.json();\r",
+              "  if (json.length > 0) {\r",
+              "    pm.expect(json[0].id).to.be.a(\"number\");\r",
+              "  }\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "",
+            "variables": ""
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/api/snippets",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "snippets"
+          ]
+        },
+        "description": "Retrieve a list of all public snippets"
+      },
+      "response": []
+    },
+    {
+      "name": "Get All Snippets (Authenticated)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "  pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Response has data array\", function () {\r",
+              "  const json = pm.response.json();\r",
+              "  pm.expect(json).to.have.property(\"data\");\r",
+              "  pm.expect(json.data).to.be.an(\"array\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"First snippet has required fields\", function () {\r",
+              "  const json = pm.response.json();\r",
+              "  if (json.length > 0) {\r",
+              "    const snippet = json[0];\r",
+              "    pm.expect(snippet).to.have.property(\"id\");\r",
+              "    pm.expect(snippet).to.have.property(\"title\");\r",
+              "    pm.expect(snippet).to.have.property(\"contents\");\r",
+              "    pm.expect(snippet).to.have.property(\"user\");\r",
+              "  }\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Snippet has numeric 'id'\", function () {\r",
+              "  const json = pm.response.json();\r",
+              "  if (json.length > 0) {\r",
+              "    pm.expect(json[0].id).to.be.a(\"number\");\r",
+              "  }\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{vault:users_token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/snippets",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "snippets"
+          ]
+        },
+        "description": "Retrieve all snippets including private ones (requires user token)"
+      },
+      "response": []
+    },
+    {
+      "name": "Get Public Snippets",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Response has data array\", function () {\r",
+              "  const json = pm.response.json();\r",
+              "  pm.expect(json).to.have.property(\"data\");\r",
+              "  pm.expect(json.data).to.be.an(\"array\");\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/snippets/public",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "snippets",
+            "public"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Search Snippets",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Response has data array\", function () {\r",
+              "  const json = pm.response.json();\r",
+              "  pm.expect(json).to.have.property(\"data\");\r",
+              "  pm.expect(json.data).to.be.an(\"array\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Response items have required fields\", function () {\r",
+              "    var jsonData = pm.response.json();\r",
+              "    if (jsonData.length > 0) {\r",
+              "        pm.expect(jsonData[0]).to.have.property('id');\r",
+              "        pm.expect(jsonData[0]).to.have.property('title');\r",
+              "    }\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/snippets/search?q=React",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "snippets",
+            "search"
+          ],
+          "query": [
+            {
+              "key": "q",
+              "value": "React"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
