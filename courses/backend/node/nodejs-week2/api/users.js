@@ -9,7 +9,10 @@ router.get("/", async (request, response) => {
       .select("users.*", "users.first_name")
       .join("users", "snippets.user_id", "users.id");
   } catch (error) {
-    response.status(500).json({ error: error.message });
+    console.error("Database error:", error);
+    response.status(500).json({
+      error: "Internal server error",
+    });
   }
 });
 
@@ -19,6 +22,9 @@ router.post("/", async (request, response) => {
       .select("users.*", "users.first_name")
       .join("users", "snippets.user_id", "users.id");
   } catch (error) {
-    response.status(500).json({ error: error.message });
+    console.error("Database error:", error);
+    response.status(500).json({
+      error: "Internal server error",
+    });
   }
 });

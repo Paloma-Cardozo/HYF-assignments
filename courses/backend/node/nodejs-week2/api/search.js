@@ -31,7 +31,10 @@ router.get("/", async (request, response) => {
 
     response.json(snippets);
   } catch (error) {
-    response.status(500).json({ error: error.message });
+    console.error("Database error:", error);
+    response.status(500).json({
+      error: "Internal server error",
+    });
   }
 });
 
@@ -50,7 +53,10 @@ router.get("/:id", async (request, response) => {
 
     response.json(snippet);
   } catch (error) {
-    response.status(500).json({ error: error.message });
+    console.error("Database error:", error);
+    response.status(500).json({
+      error: "Internal server error",
+    });
   }
 });
 
@@ -106,7 +112,10 @@ router.post("/", async (request, response) => {
 
     response.json(snippets);
   } catch (error) {
-    response.status(500).json({ error: error.message });
+    console.error("Database error:", error);
+    response.status(500).json({
+      error: "Internal server error",
+    });
   }
 });
 

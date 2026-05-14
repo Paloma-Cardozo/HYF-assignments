@@ -9,7 +9,10 @@ router.get("/", async (request, response) => {
     const tags = await knexInstance("tags").select("id", "name");
     response.json(tags);
   } catch (error) {
-    response.status(500).json({ error: error.message });
+    console.error("Database error:", error);
+    response.status(500).json({
+      error: "Internal server error",
+    });
   }
 });
 
@@ -25,7 +28,10 @@ router.get("/:id", async (request, response) => {
 
     response.json(tag);
   } catch (error) {
-    response.status(500).json({ error: error.message });
+    console.error("Database error:", error);
+    response.status(500).json({
+      error: "Internal server error",
+    });
   }
 });
 
@@ -52,7 +58,10 @@ router.post("/", async (request, response) => {
       id: newId,
     });
   } catch (error) {
-    response.status(500).json({ error: error.message });
+    console.error("Database error:", error);
+    response.status(500).json({
+      error: "Internal server error",
+    });
   }
 });
 
@@ -83,7 +92,10 @@ router.put("/:id", async (request, response) => {
       id: id,
     });
   } catch (error) {
-    response.status(500).json({ error: error.message });
+    console.error("Database error:", error);
+    response.status(500).json({
+      error: "Internal server error",
+    });
   }
 });
 
@@ -103,7 +115,10 @@ router.delete("/:id", async (request, response) => {
       id: id,
     });
   } catch (error) {
-    response.status(500).json({ error: error.message });
+    console.error("Database error:", error);
+    response.status(500).json({
+      error: "Internal server error",
+    });
   }
 });
 

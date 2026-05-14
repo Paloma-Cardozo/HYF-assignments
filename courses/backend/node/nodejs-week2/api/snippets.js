@@ -6,6 +6,7 @@ import {
   addTagToSnippetSchema,
 } from "../validation.js";
 import { validateSort } from "../middleware/validateSort.js";
+import { validateId } from "../middleware/validateId.js";
 
 const router = express.Router();
 
@@ -82,9 +83,11 @@ router.get(
 
       const data = await query;
       response.json({ data });
-    } catch (e) {
-      console.error(e);
-      response.status(500).json({ error: "Internal server error" });
+    } catch (error) {
+      console.error("Database error:", error);
+      response.status(500).json({
+        error: "Internal server error",
+      });
     }
   },
 );
@@ -123,7 +126,10 @@ router.post("/", async (request, response) => {
       id: newId,
     });
   } catch (error) {
-    response.status(500).json({ error: error.message });
+    console.error("Database error:", error);
+    response.status(500).json({
+      error: "Internal server error",
+    });
   }
 });
 
@@ -134,9 +140,11 @@ router.get("/public", async (request, response) => {
       .where("is_private", 0);
 
     response.json({ data: snippets });
-  } catch (e) {
-    console.error(e);
-    response.status(500).json({ error: "Internal server error" });
+  } catch (error) {
+    console.error("Database error:", error);
+    response.status(500).json({
+      error: "Internal server error",
+    });
   }
 });
 
@@ -153,13 +161,15 @@ router.get("/search", async (request, response) => {
       .where("title", "like", `%${q}%`);
 
     response.json({ data: snippets });
-  } catch (e) {
-    console.error(e);
-    response.status(500).json({ error: "Internal server error" });
+  } catch (error) {
+    console.error("Database error:", error);
+    response.status(500).json({
+      error: "Internal server error",
+    });
   }
 });
 
-router.get("/:id", async (request, response) => {
+router.get("/:id", validateId, async (request, response) => {
   try {
     const id = request.params.id;
 
@@ -193,11 +203,14 @@ router.get("/:id", async (request, response) => {
 
     response.json(formattedSnippet);
   } catch (error) {
-    response.status(500).json({ error: error.message });
+    console.error("Database error:", error);
+    response.status(500).json({
+      error: "Internal server error",
+    });
   }
 });
 
-router.put("/:id", async (request, response) => {
+router.put("/:id", validateId, async (request, response) => {
   try {
     const id = request.params.id;
     const body = request.body;
@@ -237,11 +250,14 @@ router.put("/:id", async (request, response) => {
       id: id,
     });
   } catch (error) {
-    response.status(500).json({ error: error.message });
+    console.error("Database error:", error);
+    response.status(500).json({
+      error: "Internal server error",
+    });
   }
 });
 
-router.delete("/:id", async (request, response) => {
+router.delete("/:id", validateId, async (request, response) => {
   try {
     const id = request.params.id;
     const snippet = await knexInstance("snippets").where("id", id).first();
@@ -257,11 +273,14 @@ router.delete("/:id", async (request, response) => {
       id: id,
     });
   } catch (error) {
-    response.status(500).json({ error: error.message });
+    console.error("Database error:", error);
+    response.status(500).json({
+      error: "Internal server error",
+    });
   }
 });
 
-router.get("/:id/tags", async (request, response) => {
+router.get("/:id/tags", validateId, async (request, response) => {
   try {
     const id = request.params.id;
     const snippet = await knexInstance("snippets").where("id", id).first();
@@ -277,11 +296,14 @@ router.get("/:id/tags", async (request, response) => {
 
     response.json(tags);
   } catch (error) {
-    response.status(500).json({ error: error.message });
+    console.error("Database error:", error);
+    response.status(500).json({
+      error: "Internal server error",
+    });
   }
 });
 
-router.post("/:id/tags", async (request, response) => {
+router.post("/:id/tags", validateId, async (request, response) => {
   try {
     const id = request.params.id;
     const body = request.body;
@@ -317,11 +339,14 @@ router.post("/:id/tags", async (request, response) => {
       tag_id: tag_id,
     });
   } catch (error) {
-    response.status(500).json({ error: error.message });
+    console.error("Database error:", error);
+    response.status(500).json({
+      error: "Internal server error",
+    });
   }
 });
 
-router.delete("/:id/tags/:tag_id", async (request, response) => {
+router.delete("/:id/tags/:tag_id", validateId, async (request, response) => {
   try {
     const id = request.params.id;
     const tag_id = request.params.tag_id;
@@ -348,7 +373,10 @@ router.delete("/:id/tags/:tag_id", async (request, response) => {
       tag_id: tag_id,
     });
   } catch (error) {
-    response.status(500).json({ error: error.message });
+    console.error("Database error:", error);
+    response.status(500).json({
+      error: "Internal server error",
+    });
   }
 });
 
