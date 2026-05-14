@@ -89,44 +89,6 @@ router.get(
   },
 );
 
-router.get("/:id", async (request, response) => {
-  try {
-    const id = request.params.id;
-
-    const snippet = await knexInstance("snippets")
-      .select(
-        "snippets.*",
-        "users.id as user_id",
-        "users.first_name",
-        "users.last_name",
-      )
-      .where("snippets.id", id)
-      .join("users", "snippets.user_id", "users.id")
-      .first();
-
-    if (!snippet) {
-      return response.status(404).json({ error: "Snippet not found" });
-    }
-
-    const formattedSnippet = {
-      id: snippet.id,
-      created_at: snippet.created_at,
-      title: snippet.title,
-      contents: snippet.contents,
-      is_private: snippet.is_private,
-      user: {
-        id: snippet.user_id,
-        first_name: snippet.first_name,
-        last_name: snippet.last_name,
-      },
-    };
-
-    response.json(formattedSnippet);
-  } catch (error) {
-    response.status(500).json({ error: error.message });
-  }
-});
-
 router.post("/", async (request, response) => {
   try {
     const body = request.body;
@@ -160,6 +122,76 @@ router.post("/", async (request, response) => {
       message: "Snippet created successfully",
       id: newId,
     });
+  } catch (error) {
+    response.status(500).json({ error: error.message });
+  }
+});
+
+router.get("/public", async (request, response) => {
+  try {
+    const snippets = await knexInstance("snippets")
+      .select("*")
+      .where("is_private", 0);
+
+    response.json({ data: snippets });
+  } catch (e) {
+    console.error(e);
+    response.status(500).json({ error: "Internal server error" });
+  }
+});
+
+router.get("/search", async (request, response) => {
+  try {
+    const q = request.query.q;
+
+    if (!q) {
+      return response.status(400).json({ error: "Search query required" });
+    }
+
+    const snippets = await knexInstance("snippets")
+      .select("*")
+      .where("title", "like", `%${q}%`);
+
+    response.json({ data: snippets });
+  } catch (e) {
+    console.error(e);
+    response.status(500).json({ error: "Internal server error" });
+  }
+});
+
+router.get("/:id", async (request, response) => {
+  try {
+    const id = request.params.id;
+
+    const snippet = await knexInstance("snippets")
+      .select(
+        "snippets.*",
+        "users.id as user_id",
+        "users.first_name",
+        "users.last_name",
+      )
+      .where("snippets.id", id)
+      .join("users", "snippets.user_id", "users.id")
+      .first();
+
+    if (!snippet) {
+      return response.status(404).json({ error: "Snippet not found" });
+    }
+
+    const formattedSnippet = {
+      id: snippet.id,
+      created_at: snippet.created_at,
+      title: snippet.title,
+      contents: snippet.contents,
+      is_private: snippet.is_private,
+      user: {
+        id: snippet.user_id,
+        first_name: snippet.first_name,
+        last_name: snippet.last_name,
+      },
+    };
+
+    response.json(formattedSnippet);
   } catch (error) {
     response.status(500).json({ error: error.message });
   }
