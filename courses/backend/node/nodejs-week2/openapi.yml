@@ -122,6 +122,105 @@ paths:
                 database_error:
                   value:
                     error: "Internal server error"
+  
+  /api/snippets/public:
+    get:
+      summary: List all public snippets
+      description: Retrieve all code snippets where is_private is false (public snippets only)
+      responses:
+        "200":
+          description: List of public snippets retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                    title:
+                      type: string
+                      example: "Hello World in JavaScript"
+                    contents:
+                      type: string
+                      example: "console.log('Hello, world!');"
+                    created_at:
+                      type: string
+                      example: "2026-05-04T10:30:00Z"
+                    is_private:
+                      type: boolean
+                      example: false
+        "500":
+          description: Server error. Database connection failed or internal error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                database_error:
+                  value:
+                    error: "Internal server error"
+  
+  /api/snippets/search:
+    get:
+      summary: Search snippets by title
+      description: Search for snippets where title contains the query string (case-insensitive)
+      parameters:
+        - name: q
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Search query string
+          example: "React"
+      responses:
+        "200":
+          description: Search results retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                    title:
+                      type: string
+                      example: "React Hooks Tutorial"
+                    contents:
+                      type: string
+                      example: "const [count, setCount] = useState(0);"
+                    created_at:
+                      type: string
+                      example: "2026-05-04T10:30:00Z"
+                    is_private:
+                      type: boolean
+                      example: false
+        "400":
+          description: Validation error - q parameter is required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                missing_query:
+                  value:
+                    error: "Search query required"
+        "500":
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                database_error:
+                  value:
+                    error: "Internal server error"
+
   /api/snippets/{id}:
     get:
       summary: Get a specific snippet by ID
@@ -264,6 +363,261 @@ paths:
                 database_error:
                   value:
                     error: "Internal server error"
+    delete:
+      summary: Delete a snippet
+      description: Delete a code snippet by its ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          example: 1
+      responses:
+        "200":
+          description: Snippet deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Snippet deleted successfully"
+                  id:
+                    type: integer
+                    example: 1
+        "400":
+          description: Invalid ID format. ID must be a number
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                invalid_id:
+                  value:
+                    error: "Invalid ID format. ID must be a number."
+        "404":
+          description: Snippet not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                not_found:
+                  value:
+                    error: "Snippet not found"
+        "500":
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                database_error:
+                  value:
+                    error: "Internal server error"
+
+  /api/snippets/{id}/tags:
+    get:
+      summary: Get tags for a snippet
+      description: Retrieve all tags associated with a specific snippet
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          example: 1
+      responses:
+        "200":
+          description: Tags retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                    name:
+                      type: string
+                      example: "JavaScript"
+              examples:
+                with_tags:
+                  value:
+                    - id: 1
+                      name: "JavaScript"
+                    - id: 2
+                      name: "React"
+                empty_tags:
+                  value: []
+        "400":
+          description: Invalid ID format. ID must be a number
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                invalid_id:
+                  value:
+                    error: "Invalid ID format. ID must be a number."
+        "404":
+          description: Snippet not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                not_found:
+                  value:
+                    error: "Snippet not found"
+        "500":
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                database_error:
+                  value:
+                    error: "Internal server error"
+    post:
+      summary: Add a tag to a snippet
+      description: Associate a tag with a specific snippet by tag ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          example: 1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tag_id:
+                  type: integer
+                  example: 2
+      responses:
+        "201":
+          description: Tag added to snippet successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Tag added to snippet successfully"
+                  snippet_id:
+                    type: integer
+                    example: 1
+                  tag_id:
+                    type: integer
+                    example: 2
+        "400":
+          description: Validation error - tag_id is required and must be a positive number
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                missing_tag_id:
+                  value:
+                    error: "tag_id must be a positive number"
+        "404":
+          description: Snippet or tag not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                snippet_not_found:
+                  value:
+                    error: "Snippet not found"
+                tag_not_found:
+                  value:
+                    error: "Tag not found"
+        "500":
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                database_error:
+                  value:
+                    error: "Internal server error"
+    delete:
+      summary: Remove a tag from a snippet
+      description: Disassociate a tag from a specific snippet
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          example: 1
+        - name: tag_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          example: 2
+      responses:
+        "200":
+          description: Tag removed from snippet successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Tag removed from snippet successfully"
+                  snippet_id:
+                    type: integer
+                    example: 1
+                  tag_id:
+                    type: integer
+                    example: 2
+        "400":
+          description: Invalid ID format. IDs must be numbers
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                invalid_id:
+                  value:
+                    error: "Invalid ID format. ID must be a number."
+        "404":
+          description: Tag is not associated with this snippet
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                not_associated:
+                  value:
+                    error: "Tag not associated with this snippet"
+        "500":
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                database_error:
+                  value:
+                    error: "Internal server error"
+
 components:
   schemas:
     Error:
