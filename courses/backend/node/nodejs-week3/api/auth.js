@@ -1,6 +1,7 @@
 import express from "express";
 import bcrypt from "bcrypt";
 import knexInstance from "../database.js";
+import jwt from "jsonwebtoken";
 
 const router = express.Router();
 
@@ -30,8 +31,15 @@ router.post("/login", async (request, response) => {
       });
     }
 
+    const token = jwt.sign(
+      { id: user.id, email: user.email },
+      "your-secret-key",
+      { expiresIn: "24h" },
+    );
+
     response.status(200).json({
       message: "Login successful",
+      token: token,
       user: {
         id: user.id,
         email: user.email,

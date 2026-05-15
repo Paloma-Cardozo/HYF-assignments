@@ -7,6 +7,7 @@ import {
 } from "../validation.js";
 import { validateSort } from "../middleware/validateSort.js";
 import { validateId } from "../middleware/validateId.js";
+import { verifyToken } from "../middleware/verifyToken.js";
 
 const router = express.Router();
 
@@ -92,7 +93,7 @@ router.get(
   },
 );
 
-router.post("/", async (request, response) => {
+router.post("/", verifyToken, async (request, response) => {
   try {
     const body = request.body;
 
@@ -257,7 +258,7 @@ router.put("/:id", validateId, async (request, response) => {
   }
 });
 
-router.delete("/:id", validateId, async (request, response) => {
+router.delete("/:id", validateId, verifyToken, async (request, response) => {
   try {
     const id = request.params.id;
     const snippet = await knexInstance("snippets").where("id", id).first();
