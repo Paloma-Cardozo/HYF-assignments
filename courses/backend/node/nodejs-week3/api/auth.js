@@ -31,6 +31,9 @@ router.post("/login", async (request, response) => {
       });
     }
 
+    request.session.userId = user.id;
+    request.session.email = user.email;
+
     const token = jwt.sign(
       { id: user.id, email: user.email },
       "your-secret-key",
@@ -51,6 +54,20 @@ router.post("/login", async (request, response) => {
     console.error("Login error:", error);
     response.status(500).json({ error: "Internal server error" });
   }
+});
+
+router.post("/logout", (request, response) => {
+  request.session.destroy((error) => {
+    if (error) {
+      return response.status(500).json({
+        error: "Could not logout",
+      });
+    }
+
+    response.status(200).json({
+      message: "Logout successful",
+    });
+  });
 });
 
 export default router;

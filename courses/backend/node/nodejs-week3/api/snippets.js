@@ -8,6 +8,7 @@ import {
 import { validateSort } from "../middleware/validateSort.js";
 import { validateId } from "../middleware/validateId.js";
 import { verifyToken } from "../middleware/verifyToken.js";
+import { verifySession } from "../middleware/verifySession.js";
 
 const router = express.Router();
 
@@ -211,7 +212,7 @@ router.get("/:id", validateId, async (request, response) => {
   }
 });
 
-router.put("/:id", validateId, async (request, response) => {
+router.put("/:id", validateId, verifySession, async (request, response) => {
   try {
     const id = request.params.id;
     const body = request.body;
